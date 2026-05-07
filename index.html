@@ -1379,6 +1379,80 @@ h1.hh .hh-line.hh-serif{
   }
 }
 
+
+/* PATCH ANIMATION FINAL
+   Animate whole cards/blocks, not inner text separately. */
+
+.rv{
+  opacity:0;
+  transform:translate3d(0,18px,0);
+  filter:blur(6px);
+  transition:
+    opacity .52s cubic-bezier(.22,1,.36,1),
+    transform .52s cubic-bezier(.22,1,.36,1),
+    filter .52s cubic-bezier(.22,1,.36,1);
+  transition-delay:0ms!important;
+  will-change:opacity,transform,filter;
+}
+
+.rv.in{
+  opacity:1;
+  transform:translate3d(0,0,0);
+  filter:blur(0);
+}
+
+/* Critical: text inside visible cards must not wait separately */
+.serv-card.in .rv,
+.pain-card.in .rv,
+.p-card.in .rv,
+.faq-card.in .rv,
+.proc-card.in .rv,
+.diff-col.in .rv,
+.n-text.in .rv,
+.n-vis.in .rv,
+.cta-box.in .rv{
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
+  transition-delay:0ms!important;
+}
+
+/* If parent card is already shown, all inner text is shown immediately */
+.serv-card .rv,
+.pain-card .rv,
+.p-card .rv,
+.faq-card .rv,
+.proc-card .rv,
+.diff-col .rv,
+.n-text .rv,
+.n-vis .rv,
+.cta-box .rv{
+  transition-delay:0ms!important;
+}
+
+/* Slight premium lift on hover only, not during scroll */
+.serv-card,
+.pain-card,
+.p-card,
+.faq-card,
+.proc-card,
+.diff-col{
+  transition:
+    transform .34s cubic-bezier(.22,1,.36,1),
+    box-shadow .34s cubic-bezier(.22,1,.36,1),
+    border-color .34s cubic-bezier(.22,1,.36,1);
+}
+
+@media(prefers-reduced-motion:reduce){
+  .rv,
+  .rv.in{
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+    transition:none!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2121,19 +2195,53 @@ function showN(id,btn){
   document.getElementById('np-'+id).classList.add('on');
 }
 
-/* REVEAL — early premium reveal, no delayed staircase */
-const ro=new IntersectionObserver(es=>{
-  es.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('in');
+/* REVEAL — final synchronized animation */
+const revealItems=[...document.querySelectorAll('.rv')];
+
+const cardSelectors='.serv-card,.pain-card,.p-card,.faq-card,.proc-card,.diff-col,.n-text,.n-vis,.cta-box';
+
+function normalizeRevealTargets(){
+  document.querySelectorAll(cardSelectors).forEach(card=>{
+    if(!card.classList.contains('rv')) card.classList.add('rv');
+
+    card.querySelectorAll('.rv').forEach(child=>{
+      if(child!==card){
+        child.classList.add('rv-child');
+      }
+    });
+  });
+}
+
+normalizeRevealTargets();
+
+const finalRevealItems=[...document.querySelectorAll('.rv:not(.rv-child)')];
+
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in');
+      entry.target.querySelectorAll('.rv-child').forEach(child=>child.classList.add('in'));
+    }else{
+      entry.target.classList.remove('in');
+      entry.target.querySelectorAll('.rv-child').forEach(child=>child.classList.remove('in'));
     }
   });
-},{threshold:0.01,rootMargin:'18% 0px -4% 0px'});
-document.querySelectorAll('.rv').forEach(el=>{
-  el.style.transitionDelay='0ms';
-  ro.observe(el);
+},{
+  threshold:0.01,
+  rootMargin:'0px 0px 22% 0px'
 });
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>50));
+
+finalRevealItems.forEach(el=>ro.observe(el));
+
+let navTick=false;
+window.addEventListener('scroll',()=>{
+  if(navTick)return;
+  navTick=true;
+  requestAnimationFrame(()=>{
+    document.getElementById('nav').classList.toggle('sc',scrollY>50);
+    navTick=false;
+  });
+},{passive:true});
 
 
 /* PATCH FINAL: ONLY 3D figure copied from index_2.html; landing content kept from index_working.html */
@@ -2384,5 +2492,6 @@ updateLocalizedPlaceholders(document.documentElement.lang || 'ru');
 <!-- PATCH FINAL VISUAL SPACING FIX APPLIED -->
 <!-- PATCH NICHE CHAT ALIGNMENT APPLIED -->
 <!-- PATCH PAIN CARDS TEXT DROP APPLIED -->
+<!-- PATCH ANIMATION FINAL APPLIED -->
 </body>
 </html>
