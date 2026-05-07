@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Farm Systems — Автоматизация для бизнеса</title>
+<meta name="description" content="AI-системы автоматизации малого и среднего бизнеса. Коммуникации, продажи, аналитика, документы — без штата.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+<style>
+/* PATCH 10C FROM CLEAN INDEX_8 — restore manager buttons, fix hero line breaks and light-background gradient */
+:root{
+  /* PATCH 10B — light premium glass system */
+  --bg:#F6F2EA;
+  --bg-2:#EAF3F7;
+  --paper:#FFFFFF;
+  --ink:#251B2A;
+  --ink-mid:#40304B;
+  --ink-soft:#695C72;
+  --muted:#90879A;
+  --muted-2:#CEC7D5;
+
+  --amethyst:#8E74B8;
+  --rose-soft:#C97B99;
+  --amber-soft:#D7A56F;
+  --periwinkle:#BFDCEC;
+  --plum:#5B344F;
+  --honey:#D8A56F;
+  --lime:#D8F75A;
+  --lime-soft:rgba(216,247,90,0.18);
+
+  --amethyst-t:rgba(142,116,184,0.12);
+  --rose-t:rgba(201,123,153,0.12);
+  --amber-t:rgba(215,165,111,0.12);
+  --peri-t:rgba(191,220,236,0.16);
+
+  --border:rgba(37,27,42,0.075);
+  --border-2:rgba(37,27,42,0.13);
+  --shadow-sm:0 1px 3px rgba(37,27,42,0.055),0 1px 2px rgba(37,27,42,0.06);
+  --shadow:0 14px 36px rgba(37,27,42,0.075),0 4px 12px rgba(37,27,42,0.045);
+  --shadow-lg:0 30px 78px rgba(37,27,42,0.13),0 10px 28px rgba(37,27,42,0.06);
+  --shadow-cta:0 16px 42px rgba(91,52,79,0.22),0 0 0 1px rgba(255,255,255,.34) inset;
+
+  --r:42px; --r-md:28px; --r-sm:18px; --r-pill:999px;
+  --sans:-apple-system,BlinkMacSystemFont,'SF Pro Text','Manrope',system-ui,sans-serif;
+  --display:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue','Manrope',Arial,sans-serif;
+  --serif:'Fraunces',Georgia,serif;
+  --mono:'DM Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:#F6F2EA;color:var(--ink);overflow-x:hidden;line-height:1.62;-webkit-font-smoothing:antialiased;letter-spacing:-.005em}
+
+/* Light premium atmospheric background — pale blue / off-white / soft plum, no aggressive wash */
+.atmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:
+  radial-gradient(ellipse 1500px 920px at 8% -6%, rgba(216,239,253,0.86) 0%, rgba(216,239,253,0.42) 34%, transparent 70%),
+  radial-gradient(ellipse 1320px 860px at 105% 2%, rgba(201,123,153,0.34) 0%, rgba(201,123,153,0.15) 38%, transparent 74%),
+  radial-gradient(ellipse 1200px 760px at 66% 102%, rgba(215,165,111,0.24) 0%, rgba(215,165,111,0.10) 42%, transparent 76%),
+  linear-gradient(180deg,#FBF8F1 0%,#F2F5F3 38%,#EAF3F7 100%);
+}
+.atmos::before{content:'';position:absolute;inset:-15%;background:
+  radial-gradient(ellipse 1100px 740px at 22% 24%, rgba(142,116,184,0.22), transparent 70%),
+  radial-gradient(ellipse 980px 720px at 82% 34%, rgba(216,247,90,0.13), transparent 76%),
+  radial-gradient(ellipse 900px 640px at 28% 78%, rgba(201,123,153,0.18), transparent 78%);
+  filter:blur(20px);opacity:.82;animation:bgSoftDrift 34s ease-in-out infinite alternate;
+}
+.atmos::after{content:'';position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(ellipse 80% 55% at 50% -18%, rgba(255,255,255,.62), transparent 72%),
+  linear-gradient(180deg, rgba(255,255,255,.18), transparent 38%, rgba(255,255,255,.10));
+}
+.ab{position:absolute;border-radius:50%;filter:blur(135px);will-change:transform;mix-blend-mode:multiply;opacity:.72}
+.ab1{width:1200px;height:980px;top:-300px;left:-340px;background:radial-gradient(ellipse,rgba(216,239,253,0.74) 0%,transparent 72%);animation:ab1m 34s ease-in-out infinite}
+.ab2{width:1080px;height:880px;top:4%;right:-330px;background:radial-gradient(ellipse,rgba(142,116,184,0.28) 0%,transparent 76%);animation:ab2m 38s ease-in-out infinite}
+.ab3{width:960px;height:820px;bottom:-260px;left:20%;background:radial-gradient(ellipse,rgba(215,165,111,0.24) 0%,transparent 74%);animation:ab3m 32s ease-in-out infinite}
+.ab4{width:840px;height:760px;top:45%;left:-190px;background:radial-gradient(ellipse,rgba(201,123,153,0.22) 0%,transparent 76%);animation:ab4m 30s ease-in-out infinite}
+.ab5{width:900px;height:780px;top:16%;left:38%;background:radial-gradient(ellipse,rgba(216,247,90,0.10) 0%,transparent 74%);animation:ab5m 36s ease-in-out infinite}
+@keyframes bgSoftDrift{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-2%,1.5%,0) scale(1.04)}}
+@keyframes ab1m{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(90px,50px) scale(1.07)}}
+@keyframes ab2m{0%,100%{transform:translate(0,0)}50%{transform:translate(-90px,70px) scale(1.04)}}
+@keyframes ab3m{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,-70px) scale(1.08)}}
+@keyframes ab4m{0%,100%{transform:translate(0,0)}33%{transform:translate(60px,-40px)}66%{transform:translate(-35px,60px)}}
+@keyframes ab5m{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-70px,42px) scale(1.06)}}
+
+/* Grain overlay — subtle matte effect */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;opacity:.18;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay}
+
+/* ── LIQUID GLASS BASE — light matte glass, grain stays on background only ── */
+.lg{
+  background:
+    linear-gradient(155deg,rgba(255,255,255,0.58),rgba(255,255,255,0.30) 58%,rgba(216,239,253,0.22)),
+    rgba(255,255,255,0.34);
+  border:1px solid rgba(255,255,255,0.58);
+  border-radius:var(--r);
+  backdrop-filter:blur(34px) saturate(155%);
+  -webkit-backdrop-filter:blur(34px) saturate(155%);
+  position:relative;overflow:hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.74),
+    inset 0 -1px 0 rgba(37,27,42,0.035),
+    0 18px 48px rgba(37,27,42,0.075),
+    0 4px 14px rgba(37,27,42,0.04);
+}
+.lg::before{content:'';position:absolute;top:0;left:7%;right:7%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.9),transparent);pointer-events:none}
+
+.lg-soft{
+  background:rgba(255,255,255,0.36);
+  border:1px solid rgba(255,255,255,0.50);
+  border-radius:var(--r);
+  backdrop-filter:blur(28px) saturate(145%);
+  -webkit-backdrop-filter:blur(28px) saturate(145%);
+  position:relative;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.58),0 8px 24px rgba(37,27,42,0.055);
+}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 40px;
+  backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);
+  background:rgba(251,248,241,0.58);
+  border-bottom:1px solid transparent;transition:all .3s}
+nav.sc{background:rgba(251,248,241,0.82);border-bottom-color:var(--border);box-shadow:var(--shadow-sm)}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+.logo-mk{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--amethyst) 0%,var(--plum) 50%,var(--rose-soft) 100%);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 2px 8px rgba(140,95,134,0.3),inset 0 1px 0 rgba(255,255,255,0.4)}
+.logo-mk::after{content:'';position:absolute;width:7px;height:7px;border-radius:50%;background:#fff;opacity:0.9;box-shadow:0 0 6px rgba(255,255,255,0.6)}
+.logo-tx{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.18em;color:var(--ink)}
+.logo-tx em{color:var(--plum);font-style:normal}
+.nav-r{display:flex;align-items:center;gap:10px}
+.ltog{display:flex;gap:3px;background:rgba(255,255,255,0.42);border-radius:var(--r-pill);padding:4px;border:1px solid rgba(255,255,255,.58);box-shadow:inset 0 1px 0 rgba(255,255,255,.62),0 4px 18px rgba(37,27,42,.055);backdrop-filter:blur(18px) saturate(150%)}
+.lb{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:.12em;padding:6px 13px;border-radius:var(--r-pill);border:none;background:transparent;color:var(--ink-soft);cursor:pointer;transition:all .25s ease}
+.lb.on{background:linear-gradient(145deg,#5B344F 0%,#33203A 100%);color:#F8F1E4;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 5px 16px rgba(91,52,79,.22)}
+/* Apple-style segmented contact controls */
+.nav-contacts{display:flex;align-items:center;gap:8px;margin-left:6px}
+.nav-c{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--r-pill);font-size:12px;font-weight:600;text-decoration:none;transition:all .2s;letter-spacing:-.005em;border:1px solid var(--border-2);background:rgba(255,255,255,0.7);color:var(--ink);backdrop-filter:blur(12px)}
+.nav-c:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm);background:rgba(255,255,255,0.9)}
+.nav-c svg{width:13px;height:13px}
+.nav-c.primary{background:linear-gradient(135deg,rgba(48,31,58,.86) 0%,rgba(75,48,88,.80) 52%,rgba(103,72,112,.72) 100%);color:#fff;border-color:rgba(255,255,255,.26);box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -18px 36px rgba(36,20,47,.24),0 8px 24px rgba(55,34,68,.24);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%)}
+.nav-c.primary:hover{background:linear-gradient(135deg,rgba(58,37,70,.90) 0%,rgba(88,58,101,.84) 52%,rgba(118,86,126,.78) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.32),inset 0 -18px 36px rgba(36,20,47,.20),0 12px 30px rgba(55,34,68,.30)}
+
+
+/* PATCH 10C — manager/button architecture restored to index_8 defaults; no extra matte overlay override */
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.16fr) minmax(430px,.84fr);align-items:center;gap:48px;padding:130px 44px 80px;position:relative;z-index:1}
+.hero-eye{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:32px;padding:7px 14px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.7);border-radius:var(--r-pill);backdrop-filter:blur(12px)}
+.hero-eye::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--plum);box-shadow:0 0 8px rgba(140,95,134,.5);animation:liveD 2s ease-in-out infinite}
+@keyframes liveD{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+
+h1.hh{font-family:var(--display);font-size:clamp(42px,5.2vw,72px);font-weight:760;line-height:1.04;letter-spacing:-.058em;margin-bottom:24px;color:var(--ink);max-width:940px;overflow:visible;text-wrap:balance}
+h1.hh .hh-line{display:block;white-space:nowrap;overflow:visible}
+.hh-serif{font-family:var(--display);font-weight:780;font-style:normal;letter-spacing:-.058em;line-height:1.08;display:inline-block;overflow:visible;padding-bottom:.10em;
+  background:linear-gradient(112deg,
+    #341F28 0%,
+    #5B344F 11%,
+    #8E74B8 24%,
+    #E30B5C 38%,
+    #4A7A98 52%,
+    #A1C958 66%,
+    #6A4555 82%,
+    #341F28 100%);
+  background-size:260% 100%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-shadow:0 0 18px rgba(91,52,79,.12),0 0 28px rgba(216,247,90,.08);
+  animation:heroGradientShift 8.5s ease-in-out infinite alternate;
+}
+@keyframes heroGradientShift{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+@keyframes premiumTextSheen{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+
+.hero-p{font-size:clamp(15px,1.5vw,18px);color:var(--ink-soft);line-height:1.7;max-width:540px;margin-bottom:38px;font-weight:400}
+
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn-pri{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;background:linear-gradient(135deg,rgba(48,31,58,.88) 0%,rgba(77,49,91,.82) 38%,rgba(112,80,120,.76) 100%);color:#fff;font-size:14.5px;font-weight:600;border-radius:var(--r-pill);text-decoration:none;border:1px solid rgba(255,255,255,.28);cursor:pointer;transition:all .25s;letter-spacing:-.005em;box-shadow:inset 0 1px 0 rgba(255,255,255,.30),inset 0 -22px 42px rgba(36,20,47,.22),0 14px 38px rgba(55,34,68,.28);backdrop-filter:blur(20px) saturate(155%);-webkit-backdrop-filter:blur(20px) saturate(155%)}
+.btn-pri:hover{transform:translateY(-2px);background:linear-gradient(135deg,rgba(58,37,70,.92) 0%,rgba(91,59,105,.86) 40%,rgba(128,94,136,.78) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.34),inset 0 -22px 42px rgba(36,20,47,.18),0 20px 48px rgba(55,34,68,.34);filter:brightness(1.04)}
+.btn-sec{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;background:rgba(255,255,255,0.7);color:var(--ink);font-size:14px;font-weight:600;border-radius:var(--r-pill);text-decoration:none;border:1px solid var(--border-2);cursor:pointer;transition:.25s;backdrop-filter:blur(12px)}
+.btn-sec:hover{background:#fff;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.btn-tg-ghost{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:rgba(255,255,255,0.5);color:var(--ink);font-size:13.5px;font-weight:500;border-radius:var(--r-pill);text-decoration:none;border:1px solid var(--border);cursor:pointer;transition:.25s;backdrop-filter:blur(12px)}
+.btn-tg-ghost:hover{background:rgba(255,255,255,0.8);border-color:var(--border-2);transform:translateY(-1px)}
+.btn-tg-ghost svg{width:14px;height:14px;color:var(--plum)}
+
+.hero-trust{display:flex;align-items:center;gap:22px;margin-top:38px;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap}
+.ht-i{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-soft);font-weight:500}
+.ht-i svg{width:15px;height:15px;color:var(--plum);flex-shrink:0}
+
+/* hero canvas */
+.hero-vis{width:100%;max-width:600px;height:600px;justify-self:end;position:relative}
+#cvs{position:absolute;inset:0;width:100%;height:100%}
+
+/* ── SECTION BASE ── */
+section{padding:96px 44px;position:relative;z-index:1}
+.inner{max-width:1180px;margin:0 auto}
+.sec-eye{font-family:var(--mono);font-size:10px;letter-spacing:.26em;color:var(--plum);text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.sec-h{font-size:clamp(28px,3.6vw,52px);font-weight:800;letter-spacing:-.038em;line-height:1.06;margin-bottom:18px;color:var(--ink)}
+.sec-h em{font-family:var(--serif);font-style:italic;font-weight:400;
+  background:linear-gradient(120deg,var(--plum) 0%,var(--amethyst) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-p{font-size:16.5px;color:var(--ink-soft);line-height:1.72;max-width:600px;margin-bottom:48px;font-weight:400}
+
+/* Section quick-contact (mini Apple-style row above each major block) */
+.sec-quick{display:flex;align-items:center;gap:10px;margin-bottom:36px;flex-wrap:wrap}
+.sq-lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.sq-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:var(--r-pill);font-size:12px;font-weight:600;text-decoration:none;transition:all .2s;border:1px solid var(--border-2);background:rgba(255,255,255,0.7);color:var(--ink);backdrop-filter:blur(10px)}
+.sq-btn:hover{background:#fff;transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.sq-btn svg{width:13px;height:13px;color:var(--plum)}
+.sq-btn.primary{background:linear-gradient(135deg,rgba(48,31,58,.86) 0%,rgba(76,49,90,.80) 55%,rgba(104,73,113,.72) 100%);color:#fff;border-color:rgba(255,255,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 8px 22px rgba(55,34,68,.20);backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%)}
+.sq-btn.primary svg{color:#fff}
+.sq-btn.primary:hover{background:linear-gradient(135deg,rgba(58,37,70,.90) 0%,rgba(89,58,102,.84) 55%,rgba(121,88,130,.78) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.30),0 11px 28px rgba(55,34,68,.26)}
+
+/* ── SERVICES ── */
+.serv-sec{}
+.serv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.serv-card{padding:34px 30px;border-radius:var(--r);transition:transform .25s ease-out,box-shadow .25s ease-out;position:relative;overflow:hidden}
+.serv-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.serv-ico{width:52px;height:52px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative;overflow:hidden}
+.serv-ico::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--amethyst-t),transparent)}
+.serv-ico svg{width:26px;height:26px;color:var(--plum);position:relative;z-index:1}
+.serv-ico.alt{}.serv-ico.alt::before{background:linear-gradient(135deg,var(--rose-t),transparent)}.serv-ico.alt svg{color:var(--rose-soft)}
+.serv-ico.alt2{}.serv-ico.alt2::before{background:linear-gradient(135deg,var(--amber-t),transparent)}.serv-ico.alt2 svg{color:var(--amber-soft)}
+.serv-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--plum);text-transform:uppercase;margin-bottom:11px;font-weight:500}
+.serv-card.alt-c .serv-tag{color:var(--rose-soft)}
+.serv-card.alt2-c .serv-tag{color:var(--amber-soft)}
+.serv-t{font-size:19px;font-weight:700;margin-bottom:11px;letter-spacing:-.024em;color:var(--ink);line-height:1.25}
+.serv-d{font-size:13.5px;color:var(--ink-soft);line-height:1.66;margin-bottom:18px}
+.serv-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.serv-li{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--ink-mid);line-height:1.5}
+.serv-li svg{width:13px;height:13px;color:var(--plum);flex-shrink:0;margin-top:3px}
+
+/* ── PAIN ── */
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pain-card{padding:32px 30px;border-radius:var(--r);transition:transform .25s ease-out,box-shadow .25s ease-out}
+.pain-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.pain-num{font-family:var(--mono);font-size:62px;font-weight:500;line-height:1;letter-spacing:-.035em;margin:8px 0 14px;display:flex;align-items:baseline;gap:6px;
+  color:#5B344F;
+  text-shadow:0 0 18px rgba(255,255,255,.38),0 0 18px rgba(216,247,90,.11);
+}
+.pain-num-u{font-size:18px;color:var(--ink-soft);font-weight:400;-webkit-text-fill-color:var(--ink-soft);text-shadow:none}
+.pain-tag{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--plum);text-transform:uppercase;margin-bottom:10px;padding:5px 11px;background:rgba(140,95,134,0.08);border-radius:var(--r-pill);border:1px solid rgba(140,95,134,0.14);font-weight:500}
+.pain-tag svg{width:11px;height:11px}
+.pain-t{font-size:16px;font-weight:700;margin-bottom:10px;letter-spacing:-.022em;line-height:1.36;color:var(--ink)}
+.pain-d{font-size:13px;color:var(--ink-soft);line-height:1.66;margin-bottom:14px}
+.pain-fix{display:flex;align-items:center;gap:8px;padding-top:14px;border-top:1px solid var(--border);font-size:12.5px;color:var(--ink);font-weight:600}
+.pain-fix svg{width:14px;height:14px;color:var(--amethyst);flex-shrink:0}
+
+/* ── DIFFERENTIATION ── */
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.diff-col{padding:38px 36px;border-radius:var(--r);position:relative}
+.diff-them{background:rgba(31,26,46,0.025);border:1px dashed var(--border-2)}
+.diff-us{position:relative;overflow:hidden}
+.diff-us::after{content:'';position:absolute;top:0;left:8%;right:8%;height:2px;background:linear-gradient(90deg,transparent,var(--amethyst),var(--rose-soft),transparent)}
+.diff-h{font-size:13px;font-family:var(--mono);letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px;font-weight:500}
+.diff-them .diff-h{color:var(--muted)}
+.diff-us .diff-h{color:var(--plum)}
+.diff-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+.diff-row{display:flex;align-items:flex-start;gap:11px;font-size:14px;line-height:1.55}
+.diff-them .diff-row{color:var(--ink-soft)}
+.diff-us .diff-row{color:var(--ink)}
+.diff-row svg{width:18px;height:18px;flex-shrink:0;margin-top:1px}
+.diff-them .diff-row svg{color:var(--muted)}
+.diff-us .diff-row svg{color:var(--amethyst)}
+
+/* ── PROCESS ── */
+.proc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
+.proc-grid::before{content:'';position:absolute;top:50px;left:calc(16.7% + 22px);right:calc(16.7% + 22px);height:1px;background:linear-gradient(90deg,transparent,var(--amethyst) 30%,var(--rose-soft) 70%,transparent);z-index:0}
+.proc-card{text-align:center;padding:38px 28px;border-radius:var(--r);transition:transform .25s ease-out,box-shadow .25s ease-out;z-index:2}
+.proc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.proc-n{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--plum) 0%,var(--amethyst) 100%);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:17px;margin:0 auto 22px;box-shadow:0 6px 20px rgba(140,95,134,0.32),inset 0 1px 0 rgba(255,255,255,0.25)}
+.proc-tag{font-family:var(--mono);font-size:9px;letter-spacing:.22em;color:var(--plum);text-transform:uppercase;margin-bottom:8px;font-weight:500}
+.proc-t{font-size:17px;font-weight:700;margin-bottom:10px;letter-spacing:-.022em;color:var(--ink)}
+.proc-d{font-size:13.5px;color:var(--ink-soft);line-height:1.66}
+
+/* ── NICHES — symmetric layout ── */
+.n-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:42px}
+.n-tab{font-size:12.5px;font-weight:600;padding:10px 20px;border-radius:var(--r-pill);border:1px solid var(--border-2);background:rgba(255,255,255,0.7);color:var(--ink-mid);cursor:pointer;transition:.2s;display:flex;align-items:center;gap:8px;backdrop-filter:blur(12px)}
+.n-tab svg{width:15px;height:15px}
+.n-tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.n-tab:hover:not(.on){border-color:var(--ink-mid);color:var(--ink);background:#fff}
+
+.n-panel{display:none;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.n-panel.on{display:grid;animation:fu .4s ease}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.n-text{padding:36px 36px;border-radius:var(--r);min-height:380px;display:flex;flex-direction:column;justify-content:center}
+.n-pain{font-family:var(--serif);font-size:24px;font-weight:400;font-style:italic;line-height:1.32;letter-spacing:-.02em;margin-bottom:24px;color:var(--ink)}
+.n-pain .hi{color:var(--plum);font-style:italic}
+.n-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:24px}
+.n-li{display:flex;align-items:flex-start;gap:11px;font-size:14px;color:var(--ink-soft);line-height:1.5}
+.n-li svg{width:16px;height:16px;color:var(--plum);flex-shrink:0;margin-top:1px}
+.n-result{display:inline-flex;align-items:center;gap:9px;padding:10px 18px;background:rgba(155,123,196,0.1);border:1px solid rgba(155,123,196,0.22);border-radius:var(--r-pill);font-size:13px;font-weight:600;color:var(--plum)}
+.n-result svg{width:14px;height:14px}
+.n-vis{height:380px;border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;padding:22px;gap:9px}
+
+/* Chat mock */
+.cm-msg{padding:11px 15px;border-radius:18px;max-width:80%;font-family:var(--sans);font-size:12.5px;line-height:1.45;animation:cmIn .5s cubic-bezier(.16,1,.3,1) backwards}
+.cm-msg:nth-child(1){animation-delay:0s}
+.cm-msg:nth-child(2){animation-delay:.35s}
+.cm-msg:nth-child(3){animation-delay:.70s}
+.cm-msg:nth-child(4){animation-delay:1.05s}
+.cm-msg:nth-child(5){animation-delay:1.40s}
+.cm-msg:nth-child(6){animation-delay:1.75s}
+.cm-msg:nth-child(7){animation-delay:2.10s}
+.cm-msg:nth-child(8){animation-delay:2.45s}
+.cm-msg:nth-child(9){animation-delay:2.80s}
+.cm-msg:nth-child(10){animation-delay:3.15s}
+.cm-msg:nth-child(11){animation-delay:3.50s}
+.cm-msg:nth-child(12){animation-delay:3.85s}
+@keyframes cmIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.cm-in{background:rgba(255,255,255,0.85);color:var(--ink);border-bottom-left-radius:5px;align-self:flex-start;border:1px solid var(--border);box-shadow:0 1px 3px rgba(31,26,46,0.04)}
+.cm-out{background:linear-gradient(145deg,#3A263F 0%,#5B344F 58%,#6E526D 100%);color:#FFF9EA;border-bottom-right-radius:5px;align-self:flex-end;box-shadow:0 8px 22px rgba(91,52,79,0.22),inset 0 1px 0 rgba(255,255,255,.16)}
+.cm-time{font-family:var(--mono);font-size:9px;color:var(--muted);text-align:right;margin-top:auto;padding-top:8px}
+
+/* ── PRICING ── */
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.p-card{padding:30px 26px;border-radius:var(--r);transition:transform .25s ease-out,box-shadow .25s ease-out;position:relative;display:flex;flex-direction:column}
+.p-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.p-card.hot{background:linear-gradient(135deg,rgba(155,123,196,0.12) 0%,rgba(216,155,179,0.10) 100%)}
+.p-card.hot{overflow:visible}
+.p-card.hot::after{content:attr(data-b);position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--plum),var(--amethyst));color:#fff;font-family:var(--mono);font-size:9px;letter-spacing:.1em;padding:6px 16px;border-radius:var(--r-pill);white-space:nowrap;font-weight:500;box-shadow:0 6px 18px rgba(140,95,134,0.35);z-index:5}
+.p-tier{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;color:var(--plum);text-transform:uppercase;margin-bottom:10px;font-weight:500}
+.p-name{font-size:18px;font-weight:700;margin-bottom:6px;letter-spacing:-.022em;color:var(--ink)}
+.p-desc{font-size:12px;color:var(--ink-soft);margin-bottom:24px;line-height:1.5;min-height:42px}
+.p-price-row{display:flex;align-items:baseline;gap:6px;margin-bottom:4px}
+.p-from{font-family:var(--mono);font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
+.p-price{font-family:var(--mono);font-size:32px;font-weight:300;letter-spacing:-.022em;color:var(--ink)}
+.p-cur{font-size:18px;color:var(--ink-soft);font-weight:300}
+.p-period{font-family:var(--mono);font-size:10px;color:var(--ink-soft);margin-bottom:24px;letter-spacing:.04em}
+.p-feats{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:26px;flex:1}
+.pf{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--ink-mid);line-height:1.45}
+.pf svg{width:13px;height:13px;color:var(--amethyst);flex-shrink:0;margin-top:2px}
+.p-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:13px;text-align:center;border-radius:var(--r-pill);font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;transition:.2s;border:1px solid var(--border-2);background:rgba(255,255,255,0.7);color:var(--ink)}
+.p-btn svg{width:13px;height:13px}
+.p-card.hot .p-btn{background:linear-gradient(135deg,var(--plum) 0%,var(--amethyst) 100%);border-color:transparent;color:#fff;box-shadow:0 6px 20px rgba(140,95,134,0.32)}
+.p-btn:hover{transform:translateY(-1px);background:#fff;box-shadow:var(--shadow-sm)}
+.p-card.hot .p-btn:hover{filter:brightness(1.06);box-shadow:0 12px 28px rgba(140,95,134,0.42)}
+
+/* ── FAQ ── */
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.faq-card{padding:28px 30px;border-radius:var(--r);transition:transform .25s ease-out,box-shadow .25s ease-out}
+.faq-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.faq-q{font-size:16px;font-weight:700;margin-bottom:14px;letter-spacing:-.022em;line-height:1.4;display:flex;align-items:flex-start;gap:11px;color:var(--ink)}
+.faq-q-ico{width:26px;height:26px;border-radius:9px;background:linear-gradient(135deg,var(--amethyst-t),var(--rose-t));display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.faq-q-ico svg{width:13px;height:13px;color:var(--plum)}
+.faq-a{font-size:13.5px;color:var(--ink-soft);line-height:1.7;padding-left:37px}
+
+/* ── CTA ── */
+.cta-box{max-width:760px;margin:0 auto;padding:60px 56px;border-radius:var(--r);text-align:center;position:relative;overflow:hidden}
+.cta-box::after{content:'';position:absolute;top:0;left:8%;right:8%;height:2px;background:linear-gradient(90deg,transparent,var(--plum) 30%,var(--amethyst) 50%,var(--rose-soft) 70%,transparent)}
+.cta-eye{font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--plum);text-transform:uppercase;margin-bottom:18px;font-weight:500}
+.cta-h{font-size:clamp(28px,3.6vw,46px);font-weight:800;letter-spacing:-.038em;line-height:1.06;margin-bottom:16px;color:var(--ink)}
+.cta-h em{font-family:var(--serif);font-style:italic;font-weight:400;
+  background:linear-gradient(120deg,var(--plum) 0%,var(--amethyst) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-p{font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto}
+.cta-btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+
+/* ── FOOTER ── */
+footer{padding:38px 44px;border-top:1px solid var(--border);background:rgba(245,241,234,0.4);position:relative;z-index:1;backdrop-filter:blur(12px)}
+.foot-i{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.fc{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-top:5px}
+.fl{display:flex;gap:20px}
+.fla{font-size:11px;color:var(--ink-soft);text-decoration:none;font-family:var(--mono);transition:.2s;letter-spacing:.04em}
+.fla:hover{color:var(--ink)}
+
+/* ── REVEAL — premium smooth, early and not laggy ── */
+.rv{opacity:0;transform:translate3d(0,18px,0) scale(.992);filter:blur(6px);transition:
+  opacity .72s cubic-bezier(.22,1,.36,1),
+  transform .72s cubic-bezier(.22,1,.36,1),
+  filter .72s cubic-bezier(.22,1,.36,1);
+  will-change:opacity,transform,filter}
+.rv.in{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+
+/* ── STICKY MOBILE CTA ── */
+.sticky-cta{display:none;position:fixed;bottom:14px;left:14px;right:14px;z-index:400;
+  padding:14px 22px;border-radius:var(--r-pill);
+  background:linear-gradient(135deg,var(--plum) 0%,var(--amethyst) 100%);color:#fff;
+  font-size:14px;font-weight:600;text-align:center;text-decoration:none;
+  box-shadow:0 16px 40px rgba(140,95,134,0.42);
+  align-items:center;justify-content:center;gap:9px}
+
+
+@media(max-width:720px){
+  h1.hh{font-size:clamp(34px,10vw,42px);max-width:100%}
+  h1.hh .hh-line{white-space:normal}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1080px){
+  .hero{grid-template-columns:1fr;padding:108px 28px 60px}
+  .hero-vis{display:none}
+  .serv-grid,.pain-grid{grid-template-columns:1fr 1fr}
+  .diff-grid{grid-template-columns:1fr}
+  .price-grid{grid-template-columns:1fr 1fr}
+  .faq-grid,.n-panel.on{grid-template-columns:1fr}
+  .nav-contacts .nav-c span{display:none}
+}
+@media(max-width:720px){
+  nav{padding:12px 16px;gap:10px;flex-wrap:wrap}
+  section{padding:64px 18px}
+  .hero{padding:96px 18px 44px}
+  h1.hh{font-size:38px;line-height:1.10}
+  .serv-grid,.pain-grid,.proc-grid,.price-grid{grid-template-columns:1fr}
+  .proc-grid::before{display:none}
+  .cta-box{padding:38px 24px}
+  .diff-col,.n-text{padding:28px 22px}
+  .n-vis{height:360px}
+  .sticky-cta{display:flex}
+  footer{padding:30px 18px}
+  body{padding-bottom:80px}
+}
+
+/* lang */
+[data-lang]{display:none}[data-lang].on{display:block}
+span[data-lang]{display:none}span[data-lang].on{display:inline}
+/* PATCH WORKING: primary glass buttons + richer niche dialogues */
+
+/* PATCH FINAL WORKING: legal links + contained flat dark liquid-glass buttons */
+:root{
+  --btn-plum-flat:#3A263F;
+  --btn-choco-flat:#4A2D39;
+  --btn-cherry-flat:#552536;
+  --btn-violet-flat:#4D355B;
+}
+
+/* Dark filled buttons: one contained surface, no external substrate, no pseudo-rims */
+.nav-c.primary,
+.btn-pri,
+.sq-btn.primary,
+.p-card.hot .p-btn,
+.sticky-cta{
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:hidden!important;
+  border-radius:999px!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.22)!important;
+  background:
+    linear-gradient(135deg,
+      rgba(58,38,63,.96) 0%,
+      rgba(69,43,55,.96) 26%,
+      rgba(85,37,54,.95) 56%,
+      rgba(77,53,91,.95) 100%)!important;
+  background-clip:padding-box!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.20),
+    inset 0 -14px 30px rgba(28,16,31,.16),
+    0 8px 22px rgba(74,45,57,.18)!important;
+  backdrop-filter:blur(16px) saturate(145%)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(145%)!important;
+  outline:none!important;
+  filter:none!important;
+}
+
+/* Remove every decorative layer that can visually escape past the pill boundary */
+.nav-c.primary::before,
+.nav-c.primary::after,
+.btn-pri::before,
+.btn-pri::after,
+.sq-btn.primary::before,
+.sq-btn.primary::after,
+.p-card.hot .p-btn::before,
+.p-card.hot .p-btn::after,
+.sticky-cta::before,
+.sticky-cta::after{
+  content:none!important;
+  display:none!important;
+  opacity:0!important;
+  background:none!important;
+  box-shadow:none!important;
+}
+
+/* Keep icons/text clean */
+.nav-c.primary > *,
+.btn-pri > *,
+.sq-btn.primary > *,
+.p-card.hot .p-btn > *,
+.sticky-cta > *{
+  position:relative!important;
+  z-index:1!important;
+}
+
+/* Hover stays inside the same pill, just a slightly brighter dark gradient */
+.nav-c.primary:hover,
+.btn-pri:hover,
+.sq-btn.primary:hover,
+.p-card.hot .p-btn:hover,
+.sticky-cta:hover{
+  transform:translateY(-1px)!important;
+  background:
+    linear-gradient(135deg,
+      rgba(64,42,70,.98) 0%,
+      rgba(78,48,61,.97) 30%,
+      rgba(96,43,62,.96) 58%,
+      rgba(86,60,102,.96) 100%)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.24),
+    inset 0 -14px 30px rgba(28,16,31,.13),
+    0 10px 26px rgba(74,45,57,.22)!important;
+  filter:none!important;
+}
+
+/* Top menu Manager button: compact clean Apple pill */
+.nav-c.primary{
+  padding:8px 14px!important;
+}
+
+/* RU/EN active segment uses the same dark family, also no external artifacts */
+.lb.on{
+  background:
+    linear-gradient(135deg,
+      rgba(58,38,63,.96) 0%,
+      rgba(74,45,57,.95) 52%,
+      rgba(77,53,91,.95) 100%)!important;
+  color:#fff!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),
+    0 4px 12px rgba(74,45,57,.14)!important;
+}
+
+/* Footer links */
+.fl{
+  gap:18px!important;
+  align-items:center!important;
+  flex-wrap:wrap!important;
+}
+.fla{
+  white-space:nowrap;
+}
+@media(max-width:720px){
+  .fl{gap:12px!important}
+  .fla{white-space:normal}
+}
+
+
+
+
+
+/* PATCH LIGHT CONTACT POPUP: optional onsite message modal */
+.contact-modal{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+}
+.contact-modal.on{display:flex}
+.contact-modal__backdrop{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 900px 620px at 22% 12%, rgba(216,239,253,.48), transparent 70%),
+    radial-gradient(ellipse 760px 560px at 82% 18%, rgba(201,123,153,.28), transparent 72%),
+    rgba(246,242,234,.54);
+  backdrop-filter:blur(42px) saturate(150%);
+  -webkit-backdrop-filter:blur(42px) saturate(150%);
+}
+.contact-modal__card{
+  position:relative;
+  z-index:1;
+  width:min(620px,100%);
+  border-radius:42px;
+  padding:34px;
+  background:
+    linear-gradient(155deg,rgba(255,255,255,.72),rgba(255,255,255,.38) 60%,rgba(216,239,253,.28)),
+    rgba(255,255,255,.44);
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.82),
+    0 30px 90px rgba(37,27,42,.16),
+    0 8px 26px rgba(37,27,42,.08);
+  overflow:hidden;
+}
+.contact-modal__card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:8%;
+  right:8%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),transparent);
+}
+.contact-modal__close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  width:36px;
+  height:36px;
+  border-radius:999px;
+  border:1px solid rgba(37,27,42,.08);
+  background:rgba(255,255,255,.58);
+  color:var(--ink);
+  cursor:pointer;
+  font-size:22px;
+  line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(12px);
+}
+.contact-modal__eye{
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--plum);
+  margin-bottom:12px;
+}
+.contact-modal__title{
+  font-size:clamp(26px,3vw,38px);
+  line-height:1.08;
+  letter-spacing:-.04em;
+  font-weight:800;
+  color:var(--ink);
+  margin-bottom:12px;
+}
+.contact-modal__text{
+  font-size:14px;
+  color:var(--ink-soft);
+  line-height:1.65;
+  margin-bottom:22px;
+  max-width:500px;
+}
+.contact-form{
+  display:grid;
+  gap:12px;
+}
+.contact-form__row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.contact-field{
+  width:100%;
+  border-radius:22px;
+  border:1px solid rgba(37,27,42,.10);
+  background:rgba(255,255,255,.64);
+  color:var(--ink);
+  padding:15px 17px;
+  font-family:var(--sans);
+  font-size:14px;
+  outline:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75);
+}
+.contact-field::placeholder{color:rgba(64,48,75,.52)}
+.contact-field:focus{
+  border-color:rgba(91,52,79,.26);
+  background:rgba(255,255,255,.82);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 0 0 4px rgba(142,116,184,.10);
+}
+textarea.contact-field{
+  min-height:126px;
+  resize:vertical;
+  line-height:1.55;
+}
+.contact-submit{
+  justify-content:center;
+  width:100%;
+  margin-top:2px;
+}
+.contact-status{
+  min-height:20px;
+  text-align:center;
+  font-size:12px;
+  color:var(--plum);
+}
+.contact-note{
+  margin-top:4px;
+  font-size:11.5px;
+  color:var(--ink-soft);
+  line-height:1.55;
+  text-align:center;
+}
+.contact-note a{
+  color:var(--plum);
+  text-underline-offset:3px;
+}
+@media(max-width:720px){
+  .contact-modal__card{padding:28px 20px;border-radius:32px}
+  .contact-form__row{grid-template-columns:1fr}
+}
+
+</style>
+</head>
+<body>
+<div class="atmos"><div class="ab ab1"></div><div class="ab ab2"></div><div class="ab ab3"></div><div class="ab ab4"></div><div class="ab ab5"></div></div>
+
+<!-- ICON DEFS -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <symbol id="i-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+  <symbol id="i-funnel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><line x1="9" y1="6" x2="15" y2="6"/><line x1="9" y1="18" x2="15" y2="18"/><line x1="6" y1="9" x2="6" y2="15"/><line x1="18" y1="9" x2="18" y2="15"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.7L19 10l-5.1 1.3L12 17l-1.9-5.7L5 10l5.1-1.3L12 3z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="i-q" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  <symbol id="i-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></symbol>
+</defs></svg>
+
+<!-- NAV with Apple-style contact buttons -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <div class="logo-mk"></div>
+    <span class="logo-tx">AI<em>·</em>FARM<em>·</em>SYSTEMS</span>
+  </a>
+  <div class="nav-r">
+    <div class="ltog">
+      <button class="lb on" onclick="setLang('ru')">RU</button>
+      <button class="lb" onclick="setLang('en')">EN</button>
+    </div>
+    <div class="nav-contacts">
+      <a href="https://t.me/BotFarm_bfbot" target="_blank" class="nav-c">
+        <svg><use href="#i-bot"/></svg>
+        <span data-lang="ru" class="on">Агент Фарми</span>
+        <span data-lang="en">Agent Farmy</span>
+      </a>
+      <a href="https://t.me/KathrynAIFS" target="_blank" class="nav-c primary">
+        <svg><use href="#i-headset"/></svg>
+        <span data-lang="ru" class="on">Менеджер</span>
+        <span data-lang="en">Manager</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div>
+    <div class="hero-eye">
+      <span data-lang="ru" class="on">AI · Farm · Systems</span>
+      <span data-lang="en">AI · Farm · Systems</span>
+    </div>
+    <h1 class="hh" data-lang="ru" style="display:block;"><span class="hh-line">Автоматизируем</span><span class="hh-line">всё, что <span class="hh-serif">съедает</span></span><span class="hh-line hh-serif">ваше время</span></h1>
+    <h1 class="hh" data-lang="en" style="display:none;"><span class="hh-line">We automate</span><span class="hh-line">the work that</span><span class="hh-line hh-serif">eats your time</span></h1>
+
+    <p class="hero-p" data-lang="ru" style="display:block;">AI-системы для малого и среднего бизнеса. Коммуникации, продажи, аналитика, документы — без раздутого штата.</p>
+    <p class="hero-p" data-lang="en" style="display:none;">AI systems for SMB. Communications, sales, analytics, documents — without bloating your team.</p>
+
+    <div class="hero-btns">
+      <a href="#" class="contact-open btn-pri">
+        <svg width="16" height="16"><use href="#i-headset"/></svg>
+        <span data-lang="ru" class="on">Связаться с менеджером</span>
+        <span data-lang="en">Talk to a manager</span>
+      </a>
+      <a href="https://t.me/BotFarm_bfbot" target="_blank" class="btn-tg-ghost">
+        <svg><use href="#i-bot"/></svg>
+        <span data-lang="ru" class="on">Спросить Фарми</span>
+        <span data-lang="en">Ask Farmy</span>
+      </a>
+    </div>
+
+    <div class="hero-trust">
+      <div class="ht-i"><svg><use href="#i-shield"/></svg><span data-lang="ru" class="on">Бесплатный аудит и расчёт ROI</span><span data-lang="en">Free audit & ROI calculation</span></div>
+      <div class="ht-i"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Без подписок и абонплаты</span><span data-lang="en">No subscriptions</span></div>
+      <div class="ht-i"><svg><use href="#i-sparkle"/></svg><span data-lang="ru" class="on">Своё решение под ваш бизнес</span><span data-lang="en">Custom-built for your business</span></div>
+    </div>
+  </div>
+
+  <div class="hero-vis"><canvas id="cvs"></canvas></div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="serv-sec" id="services">
+  <div class="inner">
+    <div class="sec-quick rv">
+      <span class="sq-lbl"><span data-lang="ru" class="on">Связаться</span><span data-lang="en">Contact</span></span>
+      <a href="https://t.me/BotFarm_bfbot" target="_blank" class="sq-btn"><svg><use href="#i-bot"/></svg><span data-lang="ru" class="on">Агент Фарми</span><span data-lang="en">Agent Farmy</span></a>
+      <a href="https://t.me/KathrynAIFS" target="_blank" class="sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
+    </div>
+    <p class="sec-eye rv"><span data-lang="ru" class="on">Что автоматизируем</span><span data-lang="en">What we automate</span></p>
+    <h2 class="sec-h rv"><span data-lang="ru" class="on">Шесть направлений, которые AI закрывает <em>лучше, чем штат</em></span><span data-lang="en">Six areas AI handles <em>better than a team</em></span></h2>
+    <p class="sec-p rv"><span data-lang="ru" class="on">Не "ботов на кнопках". Интеллектуальные системы: ведут диалог, обрабатывают данные, принимают решения и встраиваются в вашу инфраструктуру.</span><span data-lang="en">Not "button bots". Intelligent systems: real conversations, data processing, decisions, and integration into your infrastructure.</span></p>
+
+    <div class="serv-grid">
+      <div class="serv-card lg rv">
+        <div class="serv-ico"><svg><use href="#i-msg"/></svg></div>
+        <div class="serv-tag">01 · Communications</div>
+        <h3 class="serv-t"><span data-lang="ru" class="on">AI-коммуникации с клиентами</span><span data-lang="en">AI client communications</span></h3>
+        <p class="serv-d"><span data-lang="ru" class="on">Единый AI-консультант на всех каналах: отвечает, ведёт до сделки, говорит голосом бренда.</span><span data-lang="en">One AI consultant across every channel: instant replies, lead-to-deal flow, brand voice.</span></p>
+        <ul class="serv-list">
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Telegram, WhatsApp, Instagram, сайт</span><span data-lang="en">Telegram, WhatsApp, Instagram, web</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Голосовые агенты — приём звонков</span><span data-lang="en">Voice agents — inbound calls</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Запись, напоминания, отзывы</span><span data-lang="en">Booking, reminders, reviews</span></li>
+        </ul>
+      </div>
+
+      <div class="serv-card alt-c lg rv">
+        <div class="serv-ico alt"><svg><use href="#i-funnel"/></svg></div>
+        <div class="serv-tag">02 · Sales</div>
+        <h3 class="serv-t"><span data-lang="ru" class="on">Воронка продаж</span><span data-lang="en">Sales pipeline</span></h3>
+        <p class="serv-d"><span data-lang="ru" class="on">AI ищет лидов, квалифицирует, прогревает и доводит до встречи — без вашего ручного труда.</span><span data-lang="en">AI sources leads, qualifies, nurtures and books meetings — hands-off for you.</span></p>
+        <ul class="serv-list">
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Лидген + персонализированный outreach</span><span data-lang="en">Lead generation + personalized outreach</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Скоринг и приоритизация</span><span data-lang="en">Lead scoring and prioritization</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Follow-up до сделки</span><span data-lang="en">Auto follow-up until close</span></li>
+        </ul>
+      </div>
+
+      <div class="serv-card alt2-c lg rv">
+        <div class="serv-ico alt2"><svg><use href="#i-chart"/></svg></div>
+        <div class="serv-tag">03 · Intelligence</div>
+        <h3 class="serv-t"><span data-lang="ru" class="on">Аналитика и прогнозы</span><span data-lang="en">Analytics & forecasting</span></h3>
+        <p class="serv-d"><span data-lang="ru" class="on">AI читает диалоги клиентов, видит, каких услуг не хватает, и подсвечивает упущенный спрос.</span><span data-lang="en">AI reads client conversations, surfaces missing services and unmet demand.</span></p>
+        <ul class="serv-list">
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Анализ диалогов: чего хотят клиенты</span><span data-lang="en">Conversation mining: what clients want</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Прогноз спроса и нагрузки</span><span data-lang="en">Demand and workload forecasting</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Простые понятные дашборды</span><span data-lang="en">Simple, readable dashboards</span></li>
+        </ul>
+      </div>
+
+      <div class="serv-card lg rv">
+        <div class="serv-ico"><svg><use href="#i-flow"/></svg></div>
+        <div class="serv-tag">04 · Operations</div>
+        <h3 class="serv-t"><span data-lang="ru" class="on">Внутренние процессы</span><span data-lang="en">Internal workflows</span></h3>
+        <p class="serv-d"><span data-lang="ru" class="on">Связываем разрозненные инструменты в один поток. Данные текут сами — без копи-паста.</span><span data-lang="en">We unite scattered tools into one flow. Data moves itself — no copy-paste.</span></p>
+        <ul class="serv-list">
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">CRM ↔ календарь ↔ мессенджеры</span><span data-lang="en">CRM ↔ calendar ↔ messengers</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Автоматическое распределение задач</span><span data-lang="en">Automatic task routing</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Триггеры и алерты</span><span data-lang="en">Triggers and alerts</span></li>
+        </ul>
+      </div>
+
+      <div class="serv-card alt-c lg rv">
+        <div class="serv-ico alt"><svg><use href="#i-doc"/></svg></div>
+        <div class="serv-tag">05 · Documents</div>
+        <h3 class="serv-t"><span data-lang="ru" class="on">Документы и интейк</span><span data-lang="en">Documents & intake</span></h3>
+        <p class="serv-d"><span data-lang="ru" class="on">AI читает счета, договоры, заявки и сам заполняет нужные поля.</span><span data-lang="en">AI reads invoices, contracts and forms — and fills the right fields itself.</span></p>
+        <ul class="serv-list">
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Извлечение данных из PDF и сканов</span><span data-lang="en">Data extraction from PDF and scans</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Автогенерация договоров и КП</span><span data-lang="en">Auto-generated contracts and proposals</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Интейк-формы со смарт-логикой</span><span data-lang="en">Smart-logic intake forms</span></li>
+        </ul>
+      </div>
+
+      <div class="serv-card alt2-c lg rv">
+        <div class="serv-ico alt2"><svg><use href="#i-spark"/></svg></div>
+        <div class="serv-tag">06 · Marketing</div>
+        <h3 class="serv-t"><span data-lang="ru" class="on">Маркетинг и удержание</span><span data-lang="en">Marketing & retention</span></h3>
+        <p class="serv-d"><span data-lang="ru" class="on">AI пишет посты, прогревает лидов, возвращает клиентов с персональными предложениями.</span><span data-lang="en">AI writes posts, warms leads, brings clients back with personalised offers.</span></p>
+        <ul class="serv-list">
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Контент для соцсетей</span><span data-lang="en">Social media content</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Серии прогревающих писем</span><span data-lang="en">Email nurture sequences</span></li>
+          <li class="serv-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Реактивация спящих клиентов</span><span data-lang="en">Reactivation of dormant clients</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PAIN ═══ -->
+<section>
+  <div class="inner">
+    <div class="sec-quick rv">
+      <span class="sq-lbl"><span data-lang="ru" class="on">Связаться</span><span data-lang="en">Contact</span></span>
+      <a href="https://t.me/BotFarm_bfbot" target="_blank" class="sq-btn"><svg><use href="#i-bot"/></svg><span data-lang="ru" class="on">Агент Фарми</span><span data-lang="en">Agent Farmy</span></a>
+      <a href="https://t.me/KathrynAIFS" target="_blank" class="sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
+    </div>
+    <p class="sec-eye rv"><span data-lang="ru" class="on">Без AI-системы</span><span data-lang="en">Without an AI system</span></p>
+    <h2 class="sec-h rv"><span data-lang="ru" class="on">Где утекает прибыль <em>прямо сейчас</em></span><span data-lang="en">Where revenue leaks <em>right now</em></span></h2>
+    <p class="sec-p rv"><span data-lang="ru" class="on">Шесть точек потерь, типичных для малого и среднего бизнеса. Цифры — средние индустрии по открытым данным McKinsey, Deloitte и российских отраслевых отчётов.</span><span data-lang="en">Six common leak points in SMB. The numbers — industry averages from public McKinsey, Deloitte and Russian sector reports.</span></p>
+
+    <div class="pain-grid">
+      <div class="pain-card lg rv">
+        <div class="pain-tag"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Скорость</span><span data-lang="en">Speed</span></div>
+        <div class="pain-num">80<span class="pain-num-u">%</span></div>
+        <h3 class="pain-t"><span data-lang="ru" class="on">клиентов выбирают того, кто ответил первым</span><span data-lang="en">of clients choose whoever replies first</span></h3>
+        <p class="pain-d"><span data-lang="ru" class="on">Ответ за 5+ минут — и клиент уже у конкурентов. AI отвечает за секунды, в любом канале, в любое время.</span><span data-lang="en">A 5+ minute response and they're with competitors. AI replies in seconds across every channel, anytime.</span></p>
+        <div class="pain-fix"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Решено: ответ за секунды</span><span data-lang="en">Fixed: instant response</span></div>
+      </div>
+
+      <div class="pain-card lg rv">
+        <div class="pain-tag"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Стоимость</span><span data-lang="en">Cost</span></div>
+        <div class="pain-num">70<span class="pain-num-u">К ₽/мес</span></div>
+        <h3 class="pain-t"><span data-lang="ru" class="on">на одного администратора, без больничных</span><span data-lang="en">per admin per month — without sick days</span></h3>
+        <p class="pain-d"><span data-lang="ru" class="on">Зарплата + налоги + замена + ошибки + ограниченные часы. AI работает за разовую сумму без скрытых расходов.</span><span data-lang="en">Salary + taxes + replacement + errors + limited hours. AI runs on a one-time fee.</span></p>
+        <div class="pain-fix"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Решено: разово вместо ежемесячно</span><span data-lang="en">Fixed: one-time vs recurring</span></div>
+      </div>
+
+      <div class="pain-card lg rv">
+        <div class="pain-tag"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Время</span><span data-lang="en">Hours</span></div>
+        <div class="pain-num">47<span class="pain-num-u">%</span></div>
+        <h3 class="pain-t"><span data-lang="ru" class="on">заявок приходит вне рабочих часов</span><span data-lang="en">of inquiries arrive outside business hours</span></h3>
+        <p class="pain-d"><span data-lang="ru" class="on">Клиент решает вечером в воскресенье. Конкурент с AI его уже записал. Вы узнаете в понедельник — поздно.</span><span data-lang="en">A client decides Sunday evening. A competitor with AI already booked them. You find out Monday — too late.</span></p>
+        <div class="pain-fix"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Решено: 24/7 без выходных</span><span data-lang="en">Fixed: 24/7, no days off</span></div>
+      </div>
+
+      <div class="pain-card lg rv">
+        <div class="pain-tag"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Рутина</span><span data-lang="en">Routine</span></div>
+        <div class="pain-num">3<span class="pain-num-u">ч/день</span></div>
+        <h3 class="pain-t"><span data-lang="ru" class="on">уходит на повторяющиеся задачи</span><span data-lang="en">spent on repetitive tasks daily</span></h3>
+        <p class="pain-d"><span data-lang="ru" class="on">FAQ, расписания, напоминания, документы. Это не работа — это тормоз роста. AI делает за секунды.</span><span data-lang="en">FAQ, scheduling, reminders, paperwork. Not work — a growth brake. AI handles it in seconds.</span></p>
+        <div class="pain-fix"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Решено: 98% обработки без оператора</span><span data-lang="en">Fixed: 98% handled without operators</span></div>
+      </div>
+
+      <div class="pain-card lg rv">
+        <div class="pain-tag"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Удержание</span><span data-lang="en">Retention</span></div>
+        <div class="pain-num">×5</div>
+        <h3 class="pain-t"><span data-lang="ru" class="on">дороже привлечь нового, чем вернуть старого</span><span data-lang="en">costlier to acquire than to retain</span></h3>
+        <p class="pain-d"><span data-lang="ru" class="on">Без системы реактивации клиент забывает о вас. AI пишет в нужный момент с персональным предложением.</span><span data-lang="en">Without reactivation, a client forgets you. AI reaches out at the right time with a personal offer.</span></p>
+        <div class="pain-fix"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Решено: автоматическая реактивация</span><span data-lang="en">Fixed: automatic reactivation</span></div>
+      </div>
+
+      <div class="pain-card lg rv">
+        <div class="pain-tag"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Слепые зоны</span><span data-lang="en">Blind spots</span></div>
+        <div class="pain-num">0</div>
+        <h3 class="pain-t"><span data-lang="ru" class="on">видимости — какие услуги ищут клиенты</span><span data-lang="en">visibility into what clients actually want</span></h3>
+        <p class="pain-d"><span data-lang="ru" class="on">Заявки разбросаны по WhatsApp, Telegram, Instagram. AI собирает в единую воронку и подсвечивает упущенный спрос.</span><span data-lang="en">Inquiries scatter across messengers. AI unifies them and surfaces missed demand.</span></p>
+        <div class="pain-fix"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Решено: единая воронка + аналитика</span><span data-lang="en">Fixed: unified funnel + analytics</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DIFFERENTIATION ═══ -->
+<section>
+  <div class="inner">
+    <p class="sec-eye rv"><span data-lang="ru" class="on">Чем мы отличаемся</span><span data-lang="en">What makes us different</span></p>
+    <h2 class="sec-h rv"><span data-lang="ru" class="on">Не агентство и не подписочный конструктор. <em>Своё решение.</em></span><span data-lang="en">Not an agency, not a subscription builder. <em>A custom solution.</em></span></h2>
+    <p class="sec-p rv"><span data-lang="ru" class="on">Большинство "AI-агентств" перепродают готовые шаблоны. Мы строим систему под вашу инфраструктуру и оставляем её вам.</span><span data-lang="en">Most "AI agencies" resell template builders. We engineer a system for your infrastructure and leave it with you.</span></p>
+
+    <div class="diff-grid">
+      <div class="diff-col diff-them">
+        <div class="diff-h"><span data-lang="ru" class="on">Обычное агентство</span><span data-lang="en">Typical agency</span></div>
+        <ul class="diff-list">
+          <li class="diff-row"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Шаблонный бот с готовыми скриптами</span><span data-lang="en">Template bot with canned scripts</span></li>
+          <li class="diff-row"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Только один канал связи</span><span data-lang="en">Single communication channel</span></li>
+          <li class="diff-row"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Подписка от 30К ₽/мес — навсегда</span><span data-lang="en">Subscription from $400/month — forever</span></li>
+          <li class="diff-row"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Никакой аналитики и обучения</span><span data-lang="en">No analytics or learning</span></li>
+          <li class="diff-row"><svg><use href="#i-x"/></svg><span data-lang="ru" class="on">Долгие согласования через менеджеров</span><span data-lang="en">Slow approvals through account managers</span></li>
+        </ul>
+      </div>
+      <div class="diff-col diff-us lg">
+        <div class="diff-h"><span data-lang="ru" class="on">AI Farm Systems</span><span data-lang="en">AI Farm Systems</span></div>
+        <ul class="diff-list">
+          <li class="diff-row"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Понимание смысла, а не сценарии</span><span data-lang="en">Genuine intent recognition, not scripts</span></li>
+          <li class="diff-row"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Все каналы + CRM в одной воронке</span><span data-lang="en">All channels + CRM in one funnel</span></li>
+          <li class="diff-row"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Разовый платёж — система ваша навсегда</span><span data-lang="en">One-time payment — system is yours forever</span></li>
+          <li class="diff-row"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Дашборды + анализ упущенного спроса</span><span data-lang="en">Dashboards + missed-demand analytics</span></li>
+          <li class="diff-row"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Прямой диалог без посредников</span><span data-lang="en">Direct dialogue, no middlemen</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROCESS ═══ -->
+<section>
+  <div class="inner">
+    <p class="sec-eye rv" style="text-align:center;"><span data-lang="ru" class="on">Как мы работаем</span><span data-lang="en">How we work</span></p>
+    <h2 class="sec-h rv" style="text-align:center;margin-bottom:14px;"><span data-lang="ru" class="on">От разговора до запуска — <em>три шага</em></span><span data-lang="en">From conversation to launch — <em>three steps</em></span></h2>
+    <p class="sec-p rv" style="text-align:center;max-width:620px;margin-left:auto;margin-right:auto;margin-bottom:50px;"><span data-lang="ru" class="on">Каждый проект уникален: сроки и стоимость зависят от вашей инфраструктуры, объёма интеграций и текущей ситуации с доступом к сервисам. Точные сроки обсуждаем после аудита.</span><span data-lang="en">Every project is unique: timing and cost depend on your infrastructure, scope of integrations, and current service access. Exact timing we agree after the audit.</span></p>
+
+    <div class="proc-grid">
+      <div class="proc-card lg rv">
+        <div class="proc-n">1</div>
+        <div class="proc-tag">АУДИТ · AUDIT</div>
+        <h3 class="proc-t"><span data-lang="ru" class="on">Разбираем бизнес</span><span data-lang="en">We map the business</span></h3>
+        <p class="proc-d"><span data-lang="ru" class="on">Бесплатный созвон. Воронка, боли, инструменты. Получаете план автоматизации и расчёт ROI — без обязательств.</span><span data-lang="en">A free call. Funnel, pain points, tooling. You get an automation plan and ROI math — no commitment.</span></p>
+      </div>
+      <div class="proc-card lg rv">
+        <div class="proc-n">2</div>
+        <div class="proc-tag">СБОРКА · BUILD</div>
+        <h3 class="proc-t"><span data-lang="ru" class="on">Собираем систему</span><span data-lang="en">We build the system</span></h3>
+        <p class="proc-d"><span data-lang="ru" class="on">AI + интеграции + ваши каналы. Обучаем на вашей реальной базе знаний и стиле общения. Согласовываем итерациями.</span><span data-lang="en">AI + integrations + your channels. Trained on your real knowledge base and tone. We iterate with your sign-off.</span></p>
+      </div>
+      <div class="proc-card lg rv">
+        <div class="proc-n">3</div>
+        <div class="proc-tag">ЗАПУСК · LAUNCH</div>
+        <h3 class="proc-t"><span data-lang="ru" class="on">Запускаем + сопровождаем</span><span data-lang="en">We launch + support</span></h3>
+        <p class="proc-d"><span data-lang="ru" class="on">Передача системы, обучение команды, мониторинг первого месяца. Тонкая настройка по живым данным.</span><span data-lang="en">System handoff, team training, first-month monitoring. Fine-tuning based on real-world data.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NICHES — symmetric layout ═══ -->
+<section>
+  <div class="inner">
+    <div class="sec-quick rv">
+      <span class="sq-lbl"><span data-lang="ru" class="on">Связаться</span><span data-lang="en">Contact</span></span>
+      <a href="https://t.me/BotFarm_bfbot" target="_blank" class="sq-btn"><svg><use href="#i-bot"/></svg><span data-lang="ru" class="on">Агент Фарми</span><span data-lang="en">Agent Farmy</span></a>
+      <a href="https://t.me/KathrynAIFS" target="_blank" class="sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
+    </div>
+    <p class="sec-eye rv"><span data-lang="ru" class="on">Для вашей ниши</span><span data-lang="en">For your niche</span></p>
+    <h2 class="sec-h rv"><span data-lang="ru" class="on">Решение под <em>каждый бизнес</em></span><span data-lang="en">Tailored to <em>every business</em></span></h2>
+    <div class="n-tabs rv">
+      <button class="n-tab on" onclick="showN('beauty',this)"><svg><use href="#i-cal"/></svg><span data-lang="ru" class="on">Beauty</span><span data-lang="en">Beauty</span></button>
+      <button class="n-tab" onclick="showN('med',this)"><svg><use href="#i-phone"/></svg><span data-lang="ru" class="on">Медицина</span><span data-lang="en">Medical</span></button>
+      <button class="n-tab" onclick="showN('law',this)"><svg><use href="#i-shield"/></svg><span data-lang="ru" class="on">Юристы</span><span data-lang="en">Legal</span></button>
+      <button class="n-tab" onclick="showN('acc',this)"><svg><use href="#i-doc"/></svg><span data-lang="ru" class="on">Бухгалтеры</span><span data-lang="en">Accounting</span></button>
+      <button class="n-tab" onclick="showN('ecom',this)"><svg><use href="#i-funnel"/></svg><span data-lang="ru" class="on">Магазины</span><span data-lang="en">eCommerce</span></button>
+    </div>
+
+    <div class="n-panel on" id="np-beauty">
+      <div class="n-text lg">
+        <p class="n-pain" data-lang="ru" style="display:block;">"Клиент пишет в 23:00. Администратор спит. <span class="hi">Запись уходит конкуренту."</span></p>
+        <p class="n-pain" data-lang="en" style="display:none;">"Client messages at 11 PM. Admin's asleep. <span class="hi">Booking goes to a competitor."</span></p>
+        <ul class="n-list">
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Запись 24/7 в Telegram, WhatsApp, Instagram</span><span data-lang="en">Bookings 24/7 across Telegram, WhatsApp, Instagram</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Двухступенчатые напоминания — ноль пропусков</span><span data-lang="en">Two-step reminders — zero no-shows</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Сбор отзывов и реактивация старых клиентов</span><span data-lang="en">Review collection and reactivation</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Аналитика популярных услуг и пиковых часов</span><span data-lang="en">Analytics on popular services and peak hours</span></li>
+        </ul>
+        <div class="n-result"><svg><use href="#i-trend"/></svg><span data-lang="ru" class="on">Загрузка +30–50% без найма</span><span data-lang="en">Bookings +30–50% with no extra hiring</span></div>
+      </div>
+      <div class="n-vis lg-soft">
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Запишите на окрашивание, пожалуйста</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Can I book a colour appointment?</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">Конечно! Свободно: завтра 14:00 и 17:30. Что подходит? 🗓</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Of course! Available: tomorrow 2pm or 5:30pm. Which works? 🗓</div>
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">А сколько стоит окрашивание омбре?</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">How much is ombre coloring?</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">Ombre 8 500 ₽. Если первый визит — скидка 15%, итого 7 225 ₽ 🎁</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Ombre is 8 500 ₽. First-time? 15% off — 7 225 ₽ 🎁</div>
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Завтра в 17:30, и можно к мастеру Анне</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Tomorrow 5:30pm, with Anna please</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">✓ Записала к Анне, 17:30. Напомню за 24ч и за 2ч. До встречи 💜</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">✓ Booked with Anna, 5:30pm. Reminders 24h and 2h before. See you 💜</div>
+        <div class="cm-time">23:47</div>
+      </div>
+    </div>
+
+    <div class="n-panel" id="np-med">
+      <div class="n-text lg">
+        <p class="n-pain" data-lang="ru" style="display:block;">"Пациент ждёт на линии. Рецепция не справляется. <span class="hi">Врач теряет время на рутину."</span></p>
+        <p class="n-pain" data-lang="en" style="display:none;">"Patient on hold. Reception overwhelmed. <span class="hi">Doctor loses time to admin work."</span></p>
+        <ul class="n-list">
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Запись к специалисту без звонков</span><span data-lang="en">Booking specialists without calls</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Первичный сбор симптомов до визита</span><span data-lang="en">Initial symptom collection before visit</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Голосовой агент в часы пик</span><span data-lang="en">Voice agent during peak hours</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Чек-листы подготовки к процедурам</span><span data-lang="en">Procedure preparation checklists</span></li>
+        </ul>
+        <div class="n-result"><svg><use href="#i-trend"/></svg><span data-lang="ru" class="on">Нагрузка на рецепцию −60%</span><span data-lang="en">Reception workload −60%</span></div>
+      </div>
+      <div class="n-vis lg-soft">
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Здравствуйте, мне нужно перенести запись к кардиологу</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Hi, I need to move my cardiology appointment</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">Конечно. Сейчас проверю расписание врача. Какая дата удобнее?</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Of course. I’ll check the doctor’s schedule. What date works better?</div>
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Лучше четверг после 16:00, если есть окно</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Thursday after 4pm, if there is a slot</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">Есть четверг 16:30 и 18:10. Подтвердить 16:30?</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Available: Thursday 4:30pm or 6:10pm. Confirm 4:30?</div>
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Да, 16:30 подходит</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Yes, 4:30 works</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">✓ Перенесла запись и уведомила врача. Напомню за 24 часа.</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">✓ Appointment moved and doctor notified. I’ll remind you 24h before.</div>
+        <div class="cm-time">16:08</div>
+      </div>
+    </div>
+
+    <div class="n-panel" id="np-law">
+      <div class="n-text lg">
+        <p class="n-pain" data-lang="ru" style="display:block;">"Клиент хочет быстрый ответ. Юрист занят делом. <span class="hi">Горячий лид остывает за час."</span></p>
+        <p class="n-pain" data-lang="en" style="display:none;">"Client wants a quick answer. Lawyer's in court. <span class="hi">A hot lead goes cold in an hour."</span></p>
+        <ul class="n-list">
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Первичная квалификация дела без юриста</span><span data-lang="en">Initial qualification without the lawyer</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Ответы на типовые правовые вопросы 24/7</span><span data-lang="en">Standard legal Q&A 24/7</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Автоматическая запись консультаций</span><span data-lang="en">Auto-booking of consultations</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Отправка чек-листов и шаблонов</span><span data-lang="en">Sending checklists and templates</span></li>
+        </ul>
+        <div class="n-result"><svg><use href="#i-trend"/></svg><span data-lang="ru" class="on">Конверсия в платного клиента +40%</span><span data-lang="en">Conversion +40%</span></div>
+      </div>
+      <div class="n-vis lg-soft">
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Сотрудник ушёл без отработки. Что делать?</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Employee left without notice. What should we do?</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">Уточню: заявление подписано? Дата увольнения уже указана?</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Quick check: is the resignation signed? Is the exit date set?</div>
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Да, но дата сегодняшняя. Документы есть.</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Yes, but the date is today. We have the documents.</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">Поняла. Нужна консультация юриста по рискам и формулировкам.</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Got it. You need legal review of the risks and wording.</div>
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Можно сегодня вечером?</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Can we do this evening?</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">✓ Есть 18:40. Отправила чек-лист: заявление, трудовой договор, переписка.</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">✓ 6:40pm is open. Checklist sent: resignation, contract, messages.</div>
+        <div class="cm-time">12:22</div>
+      </div>
+    </div>
+
+    <div class="n-panel" id="np-acc">
+      <div class="n-text lg">
+        <p class="n-pain" data-lang="ru" style="display:block;">"Клиенты задают одни и те же вопросы. Бухгалтер тратит часы на FAQ. <span class="hi">Экспертное время уходит впустую."</span></p>
+        <p class="n-pain" data-lang="en" style="display:none;">"Clients ask the same things. Accountant spends hours on FAQ. <span class="hi">Expert time wasted."</span></p>
+        <ul class="n-list">
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Ответы по налогам и срокам 24/7</span><span data-lang="en">Tax and deadline answers 24/7</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Запрос документов и трекинг сдачи</span><span data-lang="en">Document requests and deadline tracking</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Автоматический онбординг клиентов</span><span data-lang="en">Automated client onboarding</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Уведомления о законодательных изменениях</span><span data-lang="en">Regulatory update notifications</span></li>
+        </ul>
+        <div class="n-result"><svg><use href="#i-trend"/></svg><span data-lang="ru" class="on">Освобождает 2–3 часа в день</span><span data-lang="en">Saves 2–3 hours per day</span></div>
+      </div>
+      <div class="n-vis lg-soft">
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Когда сдавать декларацию по УСН?</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">When is the simplified-tax return due?</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">ИП — до 30 апреля, ООО — до 31 марта. Авансы — поквартально.</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Sole traders — Apr 30, LLCs — Mar 31. Advances are quarterly.</div>
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">А можно заранее собрать список документов?</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Can we collect the document list in advance?</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">Да. Нужны выписки, акты, счета, касса и данные по сотрудникам.</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Yes. Bank statements, acts, invoices, cash register data, staff info.</div>
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Напомните за 5 дней и запросите файлы</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Remind me 5 days before and request files</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">✓ Настроила. За неделю пришлю чек-лист, за 5 дней — повторю.</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">✓ Set. I’ll send a checklist one week before and repeat 5 days before.</div>
+        <div class="cm-time">09:15</div>
+      </div>
+    </div>
+
+    <div class="n-panel" id="np-ecom">
+      <div class="n-text lg">
+        <p class="n-pain" data-lang="ru" style="display:block;">"Сотни вопросов по заказам. Поддержка не справляется. <span class="hi">Покупатель злится и не возвращается."</span></p>
+        <p class="n-pain" data-lang="en" style="display:none;">"Hundreds of order questions. Support overwhelmed. <span class="hi">Buyer gets angry and doesn't return."</span></p>
+        <ul class="n-list">
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Статусы заказов и трекинг доставки</span><span data-lang="en">Order status and delivery tracking</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Персональные рекомендации и апсейл</span><span data-lang="en">Personalized recommendations and upsell</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Оформление возвратов без операторов</span><span data-lang="en">Returns without operators</span></li>
+          <li class="n-li"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Анализ брошенных корзин</span><span data-lang="en">Abandoned-cart analytics</span></li>
+        </ul>
+        <div class="n-result"><svg><use href="#i-trend"/></svg><span data-lang="ru" class="on">Поддержка справляется с 3× нагрузкой</span><span data-lang="en">Support handles 3× the volume</span></div>
+      </div>
+      <div class="n-vis lg-soft">
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Где мой заказ #2847?</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">Where's my order #2847?</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">Передан в доставку. Завтра до 18:00. Трек: AB123456789RU</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Dispatched. Tomorrow by 6pm. Track: AB123456789</div>
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">А если размер не подойдёт?</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">What if the size doesn’t fit?</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">Можно вернуть в течение 30 дней. Я сохраню инструкцию в заказе.</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">You can return it within 30 days. I’ll attach the guide to your order.</div>
+        <div class="cm-msg cm-in" data-lang="ru" style="display:block;">И подберите похожую модель на размер больше</div>
+        <div class="cm-msg cm-in" data-lang="en" style="display:none;">And find a similar model one size up</div>
+        <div class="cm-msg cm-out" data-lang="ru" style="display:block;">✓ Нашла 3 варианта. Отправила подборку и промокод на повторный заказ.</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">✓ Found 3 options. Sent the selection and a repeat-order promo code.</div>
+        <div class="cm-time">18:03</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING — real market rates, no timing promises ═══ -->
+<section id="pricing">
+  <div class="inner">
+    <div class="sec-quick rv">
+      <span class="sq-lbl"><span data-lang="ru" class="on">Связаться</span><span data-lang="en">Contact</span></span>
+      <a href="https://t.me/BotFarm_bfbot" target="_blank" class="sq-btn"><svg><use href="#i-bot"/></svg><span data-lang="ru" class="on">Агент Фарми</span><span data-lang="en">Agent Farmy</span></a>
+      <a href="https://t.me/KathrynAIFS" target="_blank" class="sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
+    </div>
+    <p class="sec-eye rv" style="text-align:center;"><span data-lang="ru" class="on">Прозрачные цены</span><span data-lang="en">Transparent pricing</span></p>
+    <h2 class="sec-h rv" style="text-align:center;margin-bottom:14px;"><span data-lang="ru" class="on">Один платёж — <em>ваш на всю жизнь</em></span><span data-lang="en">One payment — <em>yours forever</em></span></h2>
+    <p class="sec-p rv" style="text-align:center;max-width:560px;margin-left:auto;margin-right:auto;"><span data-lang="ru" class="on">Без подписок и абонплат. Цены — стартовые ориентиры; финальная стоимость зависит от объёма интеграций и обсуждается после аудита.</span><span data-lang="en">No subscriptions, no monthly fees. Prices are starting reference points; final cost depends on integration scope and is agreed after the audit.</span></p>
+
+    <div class="price-grid">
+      <!-- 1: Smart bot (no AI agent — just smart logic) -->
+      <div class="p-card lg rv">
+        <div class="p-tier">SMART</div>
+        <div class="p-name"><span data-lang="ru" class="on">Умный бот</span><span data-lang="en">Smart Bot</span></div>
+        <div class="p-desc"><span data-lang="ru" class="on">Не просто кнопки — бот с логикой записи, специалистами и слотами</span><span data-lang="en">More than buttons — booking logic with specialists and slots</span></div>
+        <div class="p-price-row">
+          <span class="p-from"><span data-lang="ru" class="on">от</span><span data-lang="en">from</span></span>
+          <span class="p-price">15 000<span class="p-cur"> ₽</span></span>
+        </div>
+        <div class="p-period"><span data-lang="ru" class="on">разово</span><span data-lang="en">one-time</span></div>
+        <ul class="p-feats">
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Запись клиентов на услуги</span><span data-lang="en">Service booking</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Сопоставление специалист ↔ окно</span><span data-lang="en">Specialist ↔ slot matching</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Уведомления специалисту</span><span data-lang="en">Specialist notifications</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Базовая логика без AI</span><span data-lang="en">Smart logic, no AI</span></li>
+        </ul>
+        <a href="https://t.me/KathrynAIFS" target="_blank" class="p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
+      </div>
+
+      <!-- 2: AI assistant -->
+      <div class="p-card lg rv">
+        <div class="p-tier">AI</div>
+        <div class="p-name"><span data-lang="ru" class="on">AI-ассистент</span><span data-lang="en">AI Assistant</span></div>
+        <div class="p-desc"><span data-lang="ru" class="on">Понимает живой текст, отвечает по базе знаний, ведёт диалог</span><span data-lang="en">Understands natural text, answers from knowledge base, holds real dialogue</span></div>
+        <div class="p-price-row">
+          <span class="p-from"><span data-lang="ru" class="on">от</span><span data-lang="en">from</span></span>
+          <span class="p-price">45 000<span class="p-cur"> ₽</span></span>
+        </div>
+        <div class="p-period"><span data-lang="ru" class="on">разово</span><span data-lang="en">one-time</span></div>
+        <ul class="p-feats">
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Всё из SMART</span><span data-lang="en">Everything in SMART</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">AI понимает свободный текст</span><span data-lang="en">AI understands natural text</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">База знаний под ваш бизнес</span><span data-lang="en">Custom knowledge base</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Двухступенчатые напоминания</span><span data-lang="en">Two-step reminders</span></li>
+        </ul>
+        <a href="https://t.me/KathrynAIFS" target="_blank" class="p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
+      </div>
+
+      <!-- 3: Multi-channel + CRM (HOT) -->
+      <div class="p-card hot lg rv" data-b="ВЫБОР · POPULAR">
+        <div class="p-tier">BUSINESS</div>
+        <div class="p-name"><span data-lang="ru" class="on">Мульти-канал + CRM</span><span data-lang="en">Multi-channel + CRM</span></div>
+        <div class="p-desc"><span data-lang="ru" class="on">Все каналы в одной воронке: WA + TG + Instagram + сайт + CRM</span><span data-lang="en">All channels in one funnel: WA + TG + Instagram + web + CRM</span></div>
+        <div class="p-price-row">
+          <span class="p-from"><span data-lang="ru" class="on">от</span><span data-lang="en">from</span></span>
+          <span class="p-price">75 000<span class="p-cur"> ₽</span></span>
+        </div>
+        <div class="p-period"><span data-lang="ru" class="on">разово</span><span data-lang="en">one-time</span></div>
+        <ul class="p-feats">
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Всё из AI</span><span data-lang="en">Everything in AI</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">До 3 каналов связи</span><span data-lang="en">Up to 3 channels</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">CRM с единой воронкой</span><span data-lang="en">CRM with unified funnel</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Аналитика и дашборд</span><span data-lang="en">Analytics + dashboard</span></li>
+        </ul>
+        <a href="https://t.me/KathrynAIFS" target="_blank" class="p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
+      </div>
+
+      <!-- 4: Custom system -->
+      <div class="p-card lg rv">
+        <div class="p-tier">CUSTOM</div>
+        <div class="p-name"><span data-lang="ru" class="on">Система под ключ</span><span data-lang="en">Custom System</span></div>
+        <div class="p-desc"><span data-lang="ru" class="on">Полный цикл: лидген → прогрев → сделка → удержание + кастом</span><span data-lang="en">Full cycle: leadgen → nurture → close → retention + custom integrations</span></div>
+        <div class="p-price-row">
+          <span class="p-from"><span data-lang="ru" class="on">от</span><span data-lang="en">from</span></span>
+          <span class="p-price">120 000<span class="p-cur"> ₽</span></span>
+        </div>
+        <div class="p-period"><span data-lang="ru" class="on">разово</span><span data-lang="en">one-time</span></div>
+        <ul class="p-feats">
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Всё из BUSINESS</span><span data-lang="en">Everything in BUSINESS</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Воронка прогрева холодных лидов</span><span data-lang="en">Cold-lead nurture funnel</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Реактивация спящих клиентов</span><span data-lang="en">Dormant client reactivation</span></li>
+          <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Индивидуальная разработка</span><span data-lang="en">Custom development</span></li>
+        </ul>
+        <a href="https://t.me/KathrynAIFS" target="_blank" class="p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
+      </div>
+    </div>
+
+    <p style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);text-align:center;margin-top:30px;letter-spacing:.04em;line-height:1.6;" class="rv">
+      <span data-lang="ru" class="on">Нужно нестандартное? Голосовые агенты, документооборот, аналитика спроса, интеграции с 1С — </span>
+      <span data-lang="en">Need something custom? Voice agents, document automation, demand analytics, 1C integrations — </span>
+      <a href="https://t.me/KathrynAIFS" target="_blank" style="color:var(--plum);text-decoration:underline;text-underline-offset:3px"><span data-lang="ru" class="on">обсудим в Telegram</span><span data-lang="en">let's discuss</span></a>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section>
+  <div class="inner">
+    <div class="sec-quick rv">
+      <span class="sq-lbl"><span data-lang="ru" class="on">Связаться</span><span data-lang="en">Contact</span></span>
+      <a href="https://t.me/BotFarm_bfbot" target="_blank" class="sq-btn"><svg><use href="#i-bot"/></svg><span data-lang="ru" class="on">Агент Фарми</span><span data-lang="en">Agent Farmy</span></a>
+      <a href="https://t.me/KathrynAIFS" target="_blank" class="sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
+    </div>
+    <p class="sec-eye rv"><span data-lang="ru" class="on">Частые вопросы</span><span data-lang="en">FAQ</span></p>
+    <h2 class="sec-h rv" style="margin-bottom:40px;"><span data-lang="ru" class="on">Всё, что стоит знать <em>до старта</em></span><span data-lang="en">Everything worth knowing <em>before you start</em></span></h2>
+    <div class="faq-grid">
+      <div class="faq-card lg rv">
+        <div class="faq-q"><div class="faq-q-ico"><svg><use href="#i-q"/></svg></div><span data-lang="ru" class="on">Клиенты поймут, что общаются с AI?</span><span data-lang="en">Will clients realise they're talking to AI?</span></div>
+        <div class="faq-a"><span data-lang="ru" class="on">AI общается свободным текстом, а не шаблонами. Высокая точность распознавания намерений — клиент получает релевантный ответ. По желанию система представляется именем (Мария, Анна и т.д.). В большинстве случаев клиенты не отличают её от живого человека.</span><span data-lang="en">AI uses natural language, not templates. High intent-recognition accuracy — clients get relevant answers. Optionally the system introduces itself by name. Most clients can't tell it's not a human.</span></div>
+      </div>
+      <div class="faq-card lg rv">
+        <div class="faq-q"><div class="faq-q-ico"><svg><use href="#i-q"/></svg></div><span data-lang="ru" class="on">Это сложно настраивать и поддерживать?</span><span data-lang="en">Is it complex to set up and maintain?</span></div>
+        <div class="faq-a"><span data-lang="ru" class="on">Мы делаем всё за вас: аудит, сборку, тестирование, запуск, обучение команды. Вам не нужны технические сотрудники. После запуска система работает сама — вы видите результаты в дашборде владельца.</span><span data-lang="en">We handle everything: audit, build, testing, launch, team training. No tech staff required. After launch, the system runs itself.</span></div>
+      </div>
+      <div class="faq-card lg rv">
+        <div class="faq-q"><div class="faq-q-ico"><svg><use href="#i-q"/></svg></div><span data-lang="ru" class="on">Сколько занимает запуск?</span><span data-lang="en">How long does launch take?</span></div>
+        <div class="faq-a"><span data-lang="ru" class="on">Сроки зависят от сложности проекта, объёма интеграций и текущей ситуации с доступом к сервисам в РФ. Точные сроки обсуждаем после бесплатного аудита, когда понятна реальная картина вашего бизнеса.</span><span data-lang="en">Timelines depend on project complexity, integration scope, and current service access in your region. We discuss exact timing after the free audit, when the real picture of your business is clear.</span></div>
+      </div>
+      <div class="faq-card lg rv">
+        <div class="faq-q"><div class="faq-q-ico"><svg><use href="#i-q"/></svg></div><span data-lang="ru" class="on">А вдруг не подойдёт нашему бизнесу?</span><span data-lang="en">What if it doesn't fit our business?</span></div>
+        <div class="faq-a"><span data-lang="ru" class="on">Первый шаг — бесплатный аудит. Я разбираю процессы и честно говорю, если решение не даст ожидаемого ROI. Не берусь за проекты, в которых не уверена. Ваше время и бюджет важнее одной сделки.</span><span data-lang="en">First step is a free audit. I analyse your processes and honestly say if the solution won't deliver expected ROI. I don't take projects I'm not confident about. Your time and budget matter more than one deal.</span></div>
+      </div>
+      <div class="faq-card lg rv">
+        <div class="faq-q"><div class="faq-q-ico"><svg><use href="#i-q"/></svg></div><span data-lang="ru" class="on">Что с безопасностью данных клиентов?</span><span data-lang="en">What about client data security?</span></div>
+        <div class="faq-a"><span data-lang="ru" class="on">Все данные хранятся в вашей собственной инфраструктуре или в защищённом облаке по вашему выбору. Я не передаю данные третьим лицам и подписываю NDA. Соответствие 152-ФЗ и GDPR.</span><span data-lang="en">All data is stored in your own infrastructure or a secure cloud of your choice. I don't share data with third parties and I sign NDAs. Compliant with Russian data law and GDPR.</span></div>
+      </div>
+      <div class="faq-card lg rv">
+        <div class="faq-q"><div class="faq-q-ico"><svg><use href="#i-q"/></svg></div><span data-lang="ru" class="on">Кто работает над проектом?</span><span data-lang="en">Who works on the project?</span></div>
+        <div class="faq-a"><span data-lang="ru" class="on">Сейчас я работаю одна, на себя. Это значит, что вы общаетесь напрямую с тем, кто строит систему — без менеджеров, без потерь информации, без долгих согласований. По мере роста проектов добавляю проверенных специалистов.</span><span data-lang="en">Currently I work solo, for myself. That means you talk directly to the person building the system — no account managers, no information loss, no long approvals. I add trusted specialists as projects grow.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section style="padding-bottom:96px;">
+  <div class="inner">
+    <div class="cta-box lg rv">
+      <p class="cta-eye"><span data-lang="ru" class="on">Готовы начать?</span><span data-lang="en">Ready to start?</span></p>
+      <h2 class="cta-h"><span data-lang="ru" class="on">Бесплатный аудит и расчёт <em>ROI для вашей ниши</em></span><span data-lang="en">Free audit and ROI calculation <em>for your niche</em></span></h2>
+      <p class="cta-p"><span data-lang="ru" class="on">Расскажите о бизнесе. Разберу процессы, посчитаю окупаемость и пришлю план автоматизации. Без обязательств.</span><span data-lang="en">Tell me about your business. I'll analyse processes, calculate payback, and send you an automation plan. No commitment.</span></p>
+      <div class="cta-btn-row">
+        <a href="#" class="contact-open btn-pri" style="font-size:15px;padding:16px 36px;">
+          <svg width="18" height="18"><use href="#i-headset"/></svg>
+          <span data-lang="ru" class="on">Написать менеджеру</span>
+          <span data-lang="en">Message manager</span>
+        </a>
+        <a href="https://t.me/BotFarm_bfbot" target="_blank" class="btn-tg-ghost" style="font-size:14px;padding:16px 28px;">
+          <svg><use href="#i-bot"/></svg>
+          <span data-lang="ru" class="on">Спросить Фарми</span>
+          <span data-lang="en">Ask Farmy</span>
+        </a>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:20px;padding-top:24px;border-top:1px solid var(--border)">
+        <div class="ht-i"><svg width="13" height="13"><use href="#i-shield"/></svg><span data-lang="ru" class="on">NDA и безопасность данных</span><span data-lang="en">NDA & data security</span></div>
+        <div class="ht-i"><svg width="13" height="13"><use href="#i-check"/></svg><span data-lang="ru" class="on">Без подписок</span><span data-lang="en">No subscriptions</span></div>
+        <div class="ht-i"><svg width="13" height="13"><use href="#i-sparkle"/></svg><span data-lang="ru" class="on">Прямой диалог</span><span data-lang="en">Direct dialogue</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-i">
+    <div>
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:5px;"><div class="logo-mk" style="width:20px;height:20px;border-radius:6px;"></div><span style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--ink);">AI<span style="color:var(--plum);">·</span>FARM<span style="color:var(--plum);">·</span>SYSTEMS</span></div>
+      <div class="fc"><span data-lang="ru" class="on">© 2026 AI Farm Systems · Россия · Казахстан · США</span><span data-lang="en">© 2026 AI Farm Systems · Russia · Kazakhstan · USA</span></div>
+    </div>
+    <div class="fl">
+      <a href="https://telegra.ph/POLITIKA-KONFIDENCIALNOSTI-USLOVIYA-OBRABOTKI-PERSONALNYH-DANNYH-I-PORYADOK-PREDOSTAVLENIYA-SOGLASIYA-03-09" target="_blank" rel="noopener" class="fla"><span data-lang="ru" class="on">Конфиденциальность</span><span data-lang="en">Privacy</span></a>
+      <a href="https://telegra.ph/DOGOVOR-PUBLICHNOJ-OFERTY-03-09-2" target="_blank" rel="noopener" class="fla"><span data-lang="ru" class="on">Оферта</span><span data-lang="en">Public offer</span></a>
+    </div>
+  </div>
+</footer>
+
+
+<div class="contact-modal" id="contactModal" aria-hidden="true">
+  <div class="contact-modal__backdrop" data-contact-close></div>
+  <div class="contact-modal__card" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <button class="contact-modal__close" type="button" aria-label="Закрыть" data-contact-close>×</button>
+    <div class="contact-modal__eye"><span data-lang="ru" class="on">Сообщение с сайта</span><span data-lang="en">Website message</span></div>
+    <h3 class="contact-modal__title" id="contactModalTitle"><span data-lang="ru" class="on">Напишите задачу</span><span data-lang="en">Send your task</span></h3>
+    <p class="contact-modal__text"><span data-lang="ru" class="on">Оставьте контакт и коротко опишите, что хотите автоматизировать. Ответ придёт туда, где вам удобно.</span><span data-lang="en">Leave your contact and briefly describe what you want to automate. I’ll reply where it’s convenient for you.</span></p>
+
+    <form class="contact-form" id="contactForm">
+      <div class="contact-form__row">
+        <input class="contact-field" name="name" autocomplete="name" placeholder="Имя" data-placeholder-ru="Имя" data-placeholder-en="Name">
+        <input class="contact-field" name="contact" required placeholder="Как с вами связаться" data-placeholder-ru="Как с вами связаться" data-placeholder-en="How to contact you">
+      </div>
+      <textarea class="contact-field" name="message" required placeholder="Что хотите автоматизировать?" data-placeholder-ru="Что хотите автоматизировать?" data-placeholder-en="What would you like to automate?"></textarea>
+      <button type="submit" class="btn-pri contact-submit">
+        <svg width="16" height="16"><use href="#i-arr"/></svg>
+        <span data-lang="ru" class="on">Отправить сообщение</span>
+        <span data-lang="en">Send message</span>
+      </button>
+      <div class="contact-status" id="contactStatus"></div>
+      <p class="contact-note">
+        <span data-lang="ru" class="on">Нажимая кнопку, вы соглашаетесь с условиями обработки данных.</span>
+        <span data-lang="en">By sending, you agree to data processing terms.</span>
+        <br><a href="https://telegra.ph/POLITIKA-KONFIDENCIALNOSTI-USLOVIYA-OBRABOTKI-PERSONALNYH-DANNYH-I-PORYADOK-PREDOSTAVLENIYA-SOGLASIYA-03-09" target="_blank" rel="noopener"><span data-lang="ru" class="on">Конфиденциальность</span><span data-lang="en">Privacy</span></a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<a href="#" class="contact-open sticky-cta">
+  <svg width="16" height="16"><use href="#i-headset"/></svg>
+  <span data-lang="ru" class="on">Написать менеджеру</span>
+  <span data-lang="en">Message manager</span>
+</a>
+
+<script>
+function setLang(l, save = true){
+  document.querySelectorAll('[data-lang]').forEach(el=>{
+    const m = el.getAttribute('data-lang') === l;
+    el.classList.toggle('on', m);
+    el.style.display = m ? (el.tagName === 'SPAN' ? 'inline' : 'block') : 'none';
+  });
+
+  document.querySelectorAll('.lb').forEach(b=>{
+    b.classList.toggle('on', b.textContent.trim() === l.toUpperCase());
+  });
+
+  document.documentElement.lang = l;
+  if (typeof updateLocalizedPlaceholders === 'function') updateLocalizedPlaceholders(l);
+
+  if (save) {
+    localStorage.setItem('aifarm_lang', l);
+  }
+}
+
+function detectInitialLang(){
+  const saved = localStorage.getItem('aifarm_lang');
+  if (saved === 'ru' || saved === 'en') return saved;
+
+  const langs = navigator.languages && navigator.languages.length
+    ? navigator.languages
+    : [navigator.language || 'en'];
+
+  const joined = langs.join(',').toLowerCase();
+
+  if (
+    joined.includes('ru') ||
+    joined.includes('uk') ||
+    joined.includes('be') ||
+    joined.includes('kk')
+  ) {
+    return 'ru';
+  }
+
+  return 'en';
+}
+
+function updateLocalizedPlaceholders(lang){
+  document.querySelectorAll('[data-placeholder-ru]').forEach(el=>{
+    const v = el.getAttribute(lang === 'en' ? 'data-placeholder-en' : 'data-placeholder-ru');
+    if(v) el.setAttribute('placeholder', v);
+  });
+}
+
+function showN(id,btn){
+  document.querySelectorAll('.n-tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.n-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('np-'+id).classList.add('on');
+}
+
+/* REVEAL — early premium reveal, no delayed staircase */
+const ro=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+    }
+  });
+},{threshold:0.01,rootMargin:'18% 0px -4% 0px'});
+document.querySelectorAll('.rv').forEach(el=>{
+  el.style.transitionDelay='0ms';
+  ro.observe(el);
+});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>50));
+
+
+/* PATCH FINAL: ONLY 3D figure copied from index_2.html; landing content kept from index_working.html */
+/* ── PREMIUM 3D CANVAS SPHERE ── */
+(function(){
+  const canvas=document.getElementById('cvs');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  let W,H,mx=0,my=0;
+
+  function resize(){
+    const p=canvas.parentElement;
+    W=p.clientWidth; H=p.clientHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  resize();
+  window.addEventListener('resize',()=>{resize()});
+
+  /* Mouse parallax */
+  canvas.parentElement.addEventListener('mousemove',e=>{
+    const r=canvas.getBoundingClientRect();
+    mx=(e.clientX-r.left-W/2)/W;
+    my=(e.clientY-r.top-H/2)/H;
+  });
+
+  /* Fibonacci sphere points */
+  const N=220; const phi=Math.PI*(3-Math.sqrt(5));
+  const pts=[];
+  for(let i=0;i<N;i++){
+    const y=1-(i/(N-1))*2;
+    const r=Math.sqrt(Math.max(0,1-y*y));
+    const t=phi*i;
+    pts.push({ox:r*Math.cos(t), oy:y, oz:r*Math.sin(t),
+      // colour group
+      g: i%7===0?'lime': i%5===0?'rose':'dim'
+    });
+  }
+
+  /* Signal particles */
+  const sigs=Array.from({length:10},(_,i)=>{
+    const from=Math.floor(Math.random()*N);
+    const to=Math.floor(Math.random()*N);
+    return{t:i/10,speed:.003+Math.random()*.004,from,to,lime:Math.random()>.5};
+  });
+
+  let ry=0,rx=0;
+
+  function rot3(p,ry,rx){
+    const cy=Math.cos(ry),sy=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx);
+    let x=p.ox*cy+p.oz*sy, y=p.oy, z=-p.ox*sy+p.oz*cy;
+    let y2=y*cx-z*sx, z2=y*sx+z*cx;
+    return{x,y:y2,z:z2};
+  }
+
+  function proj(r){
+    const R=Math.min(W,H)*.38, cx=W/2, cy=H/2;
+    const p=2.6/(2.6+r.z*.5);
+    return{sx:cx+r.x*R*p, sy:cy+r.y*R*p, z:r.z, R};
+  }
+
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+
+    const trx=rx+my*.12, try_=ry+mx*.12;
+    const rotated=pts.map((p,i)=>{const r=rot3(p,try_,trx); const pr=proj(r); return{...pr,g:p.g,i}});
+
+    /* Background atmospheric glow */
+    const cx=W/2, cy=H/2;
+    const bg=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.min(W,H)*.55);
+    bg.addColorStop(0,'rgba(92,54,132,.18)');
+    bg.addColorStop(1,'rgba(0,0,0,0)');
+    ctx.beginPath(); ctx.arc(cx,cy,Math.min(W,H)*.55,0,Math.PI*2);
+    ctx.fillStyle=bg; ctx.fill();
+
+    /* Connections — depth sorted */
+    const sorted=[...rotated].sort((a,b)=>a.z-b.z);
+    for(let i=0;i<sorted.length;i++){
+      for(let j=i+1;j<Math.min(i+15,sorted.length);j++){
+        const dx=sorted[i].sx-sorted[j].sx, dy=sorted[i].sy-sorted[j].sy;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        const R=sorted[i].R;
+        if(d<R*.36){
+          const t=1-d/(R*.36);
+          const za=(sorted[i].z+sorted[j].z+2)/4;
+          const alpha=t*t*za*.3;
+          ctx.strokeStyle=`rgba(76,48,116,${Math.min(alpha*2.15,.48)})`;
+          ctx.lineWidth=.7;
+          ctx.beginPath(); ctx.moveTo(sorted[i].sx,sorted[i].sy); ctx.lineTo(sorted[j].sx,sorted[j].sy);
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* Signal particles */
+    sigs.forEach(s=>{
+      s.t+=s.speed; if(s.t>1){s.t=0;s.from=Math.floor(Math.random()*N);s.to=Math.floor(Math.random()*N);}
+      const a=rotated[s.from], b=rotated[s.to];
+      const sx=a.sx+(b.sx-a.sx)*s.t, sy=a.sy+(b.sy-a.sy)*s.t;
+      const zv=(a.z+b.z+2)/4;
+      const col=s.lime?`rgba(92,132,16,${Math.min(zv*1.05,.95)})`:`rgba(152,40,86,${Math.min(zv*1.05,.95)})`;
+      const g=ctx.createRadialGradient(sx,sy,0,sx,sy,12);
+      g.addColorStop(0,col); g.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.beginPath(); ctx.arc(sx,sy,12,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
+      ctx.beginPath(); ctx.arc(sx,sy,2.8,0,Math.PI*2);
+      ctx.fillStyle=s.lime?`rgba(84,120,12,${Math.min(zv*1.1,1)})`:`rgba(148,38,84,${Math.min(zv*1.1,1)})`; ctx.fill();
+    });
+
+    /* Nodes */
+    rotated.sort((a,b)=>a.z-b.z).forEach(p=>{
+      const v=(p.z+1)/2, r=1.2+v*3.5;
+      const alpha=.15+v*.85;
+      let col;
+      if(p.g==='lime') col=[86,126,12];
+      else if(p.g==='rose') col=[154,42,88];
+      else col=[112,76,166];
+
+      /* Glow */
+      const g2=ctx.createRadialGradient(p.sx,p.sy,0,p.sx,p.sy,r*6);
+      g2.addColorStop(0,`rgba(${col.join(',')},${alpha*.3})`);
+      g2.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.beginPath(); ctx.arc(p.sx,p.sy,r*6,0,Math.PI*2); ctx.fillStyle=g2; ctx.fill();
+
+      ctx.beginPath(); ctx.arc(p.sx,p.sy,r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${col.join(',')},${alpha})`; ctx.fill();
+    });
+
+    /* Outer decorative rings */
+    const R=rotated[0]?.R||150;
+    [[1.16,.055],[1.28,.032],[1.42,.016]].forEach(([s,a])=>{
+      ctx.beginPath(); ctx.arc(cx,cy,R*s,0,Math.PI*2);
+      ctx.strokeStyle=`rgba(84,54,126,${a*2.4})`;
+      ctx.lineWidth=1; ctx.setLineDash([8,6]); ctx.stroke(); ctx.setLineDash([]);
+    });
+
+    /* Secondary ring (lime) */
+    ctx.save();
+    ctx.translate(cx,cy); ctx.rotate(ry*2);
+    ctx.beginPath(); ctx.ellipse(0,0,R*1.22,R*.52,Math.PI/4,0,Math.PI*2);
+    ctx.strokeStyle='rgba(82,118,14,.13)'; ctx.lineWidth=1; ctx.stroke();
+    ctx.restore();
+
+    ry+=.004; rx+=.0014;
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+
+
+/* Contact popup. Paste n8n webhook URL into AI_FARM_POPUP_WEBHOOK_URL when ready. */
+const AI_FARM_POPUP_WEBHOOK_URL = "https://hook.us2.make.com/3y0nepusgne0drh4uc3a80anlgognjea";
+
+function openContactModal(e){
+  if(e) e.preventDefault();
+  const m = document.getElementById('contactModal');
+  if(!m) return;
+  m.classList.add('on');
+  m.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=>m.querySelector('input[name="contact"]')?.focus(), 80);
+}
+
+function closeContactModal(){
+  const m = document.getElementById('contactModal');
+  if(!m) return;
+  m.classList.remove('on');
+  m.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.contact-open').forEach(el=>el.addEventListener('click',openContactModal));
+document.querySelectorAll('[data-contact-close]').forEach(el=>el.addEventListener('click',closeContactModal));
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeContactModal(); });
+
+const contactForm = document.getElementById('contactForm');
+if(contactForm){
+  contactForm.addEventListener('submit', async e=>{
+    e.preventDefault();
+    const status = document.getElementById('contactStatus');
+    const lang = document.documentElement.lang || 'ru';
+    const fd = new FormData(contactForm);
+    const payload = {
+      source: "AI Farm landing popup",
+      lang,
+      page: location.href,
+      name: (fd.get('name') || '').toString().trim(),
+      contact: (fd.get('contact') || '').toString().trim(),
+      message: (fd.get('message') || '').toString().trim(),
+      created_at: new Date().toISOString()
+    };
+
+    if(!payload.contact || !payload.message){
+      status.textContent = lang === 'en'
+        ? 'Please add contact details and a message.'
+        : 'Добавьте контакт и сообщение.';
+      return;
+    }
+
+    if(!AI_FARM_POPUP_WEBHOOK_URL){
+      status.textContent = lang === 'en'
+        ? 'The form is ready. Connect n8n webhook before publishing.'
+        : 'Форма готова. Перед публикацией нужно подключить n8n webhook.';
+      console.log('AI Farm popup lead:', payload);
+      return;
+    }
+
+    status.textContent = lang === 'en' ? 'Sending…' : 'Отправляю…';
+
+    try{
+      const res = await fetch(AI_FARM_POPUP_WEBHOOK_URL,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload)
+      });
+      if(!res.ok) throw new Error('Webhook error '+res.status);
+      contactForm.reset();
+      status.textContent = lang === 'en' ? 'Sent. I will reply soon.' : 'Отправлено. Я скоро отвечу.';
+      setTimeout(closeContactModal, 1300);
+    }catch(err){
+      console.error(err);
+      status.textContent = lang === 'en'
+        ? 'Could not send. Please message the manager in Telegram.'
+        : 'Не удалось отправить. Напишите менеджеру в Telegram.';
+    }
+  });
+}
+
+setLang(detectInitialLang(), false);
+updateLocalizedPlaceholders(document.documentElement.lang || 'ru');
+</script>
+<!-- PATCH FINAL WORKING — LEGAL LINKS + BUTTONS; 3D PRESERVED -->
+<!-- PATCH FINAL FOOTER SHORT LEGAL LINKS -->
+<!-- PATCH LIGHT CTA RESTORED FROM index_working2 -->
+<!-- PATCH ROI SPACE + LIGHT CONTACT POPUP -->
+</body>
+</html>
