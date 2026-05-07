@@ -680,6 +680,705 @@ textarea.contact-field{
   .contact-form__row{grid-template-columns:1fr}
 }
 
+
+
+/* PATCH CLEAN HERO + BUTTONS + MOBILE NAV */
+
+/* --- HERO TITLE: keep original structure, but stop huge gaps and clipping --- */
+h1.hh{
+  overflow:visible!important;
+  line-height:1.08!important;
+  margin-bottom:26px!important;
+  max-width:1040px!important;
+}
+
+h1.hh .hh-line{
+  display:block!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  line-height:1.08!important;
+  padding:0!important;
+  margin:0 0 .08em 0!important;
+}
+
+h1.hh .hh-serif,
+.hh-serif{
+  display:inline-block!important;
+  overflow:visible!important;
+  line-height:1.08!important;
+  padding:0 .12em .08em .015em!important;
+  margin:0 -.10em 0 0!important;
+  vertical-align:baseline!important;
+}
+
+/* The full third line also needs a little right air for gradient text */
+h1.hh .hh-line.hh-serif{
+  padding-right:.16em!important;
+  padding-bottom:.08em!important;
+}
+
+/* --- BUTTONS: restore symmetry and centered content --- */
+.btn-pri,
+.nav-c.primary,
+.sq-btn.primary,
+.p-card.hot .p-btn,
+.sticky-cta{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  text-align:center!important;
+  box-sizing:border-box!important;
+  white-space:nowrap!important;
+}
+
+.btn-pri{
+  padding:15px 30px!important;
+  min-height:54px!important;
+}
+
+.nav-c.primary{
+  padding:8px 16px!important;
+  min-height:40px!important;
+}
+
+.btn-pri svg,
+.nav-c.primary svg,
+.sq-btn.primary svg,
+.p-card.hot .p-btn svg,
+.sticky-cta svg{
+  flex:0 0 auto!important;
+}
+
+/* popup submit must be symmetrical too */
+.contact-submit{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  padding:15px 30px!important;
+  min-height:54px!important;
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+
+/* --- MOBILE HERO / NAV --- */
+@media(max-width:720px){
+
+  /* Remove duplicate white AI FARM SYSTEMS pill above hero on mobile only */
+  .hero-eye{
+    display:none!important;
+  }
+
+  .hero{
+    min-height:auto!important;
+    padding:180px 18px 52px!important;
+    gap:22px!important;
+  }
+
+  h1.hh{
+    font-size:clamp(38px,10.2vw,50px)!important;
+    line-height:1.10!important;
+    letter-spacing:-.052em!important;
+    max-width:100%!important;
+    margin-bottom:24px!important;
+  }
+
+  h1.hh .hh-line{
+    line-height:1.10!important;
+    margin-bottom:.12em!important;
+    white-space:normal!important;
+  }
+
+  h1.hh .hh-serif,
+  h1.hh .hh-line.hh-serif{
+    line-height:1.10!important;
+    padding-right:.14em!important;
+    padding-bottom:.08em!important;
+  }
+
+  .hero-p{
+    font-size:18px!important;
+    line-height:1.58!important;
+    margin-bottom:28px!important;
+  }
+
+  .hero-btns{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:12px!important;
+  }
+
+  .hero-btns a{
+    width:100%!important;
+    justify-content:center!important;
+    padding:17px 24px!important;
+    min-height:58px!important;
+    font-size:16px!important;
+  }
+
+  /* Top mobile nav: keep labels, but give buttons normal inner spacing */
+  .nav-r{
+    width:100%!important;
+    min-width:0!important;
+  }
+
+  .nav-contacts{
+    min-width:0!important;
+    gap:8px!important;
+  }
+
+  .nav-c{
+    min-width:0!important;
+    box-sizing:border-box!important;
+    justify-content:center!important;
+    text-align:center!important;
+  }
+
+  .nav-c.primary{
+    padding:12px 14px!important;
+    min-height:50px!important;
+    font-size:14px!important;
+    line-height:1.15!important;
+  }
+
+  .nav-c svg{
+    width:14px!important;
+    height:14px!important;
+    flex:0 0 auto!important;
+  }
+
+  .contact-modal__card{
+    border-radius:34px!important;
+  }
+}
+
+@media(max-width:390px){
+  h1.hh{
+    font-size:37px!important;
+  }
+
+  .nav-c.primary{
+    font-size:13px!important;
+    padding-left:10px!important;
+    padding-right:10px!important;
+  }
+}
+
+
+
+
+/* PATCH FINAL CARDS + NAV + TEXT REFINEMENT */
+
+/* --- Farmy label: full on desktop, short on mobile --- */
+.nav-farmy-short{
+  display:none!important;
+}
+
+@media(min-width:721px){
+  .nav-farmy-full.on{
+    display:inline!important;
+  }
+  .nav-farmy-short.on{
+    display:none!important;
+  }
+}
+
+@media(max-width:720px){
+  .nav-contacts .nav-farmy-full.on{
+    display:none!important;
+  }
+  .nav-contacts .nav-farmy-short.on{
+    display:inline!important;
+  }
+
+  .nav-contacts .nav-c{
+    box-sizing:border-box!important;
+    justify-content:center!important;
+    text-align:center!important;
+  }
+
+  .nav-contacts .nav-c.primary{
+    min-width:142px!important;
+    padding-left:18px!important;
+    padding-right:18px!important;
+  }
+}
+
+/* --- Pain cards: tag to top-right, number back left and aligned to the tag top --- */
+.pain-card{
+  position:relative!important;
+  min-height:264px!important;
+  height:100%!important;
+  padding:32px 34px 28px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+
+.pain-card .pain-tag{
+  position:absolute!important;
+  top:32px!important;
+  right:34px!important;
+  left:auto!important;
+  margin:0!important;
+  max-width:58%!important;
+  text-align:right!important;
+  white-space:nowrap!important;
+}
+
+.pain-card .pain-num{
+  position:static!important;
+  margin:0 0 14px 0!important;
+  text-align:left!important;
+  font-size:60px!important;
+  line-height:.98!important;
+  letter-spacing:-.045em!important;
+  white-space:nowrap!important;
+}
+
+.pain-card .pain-num small,
+.pain-card .pain-num span,
+.pain-card .pain-num-u{
+  font-size:18px!important;
+  letter-spacing:0!important;
+}
+
+.pain-card .pain-t{
+  margin-top:0!important;
+  margin-bottom:10px!important;
+  line-height:1.22!important;
+}
+
+.pain-card .pain-d{
+  line-height:1.50!important;
+  margin-bottom:14px!important;
+}
+
+.pain-card .pain-fix,
+.pain-card .pain-solve{
+  margin-top:auto!important;
+}
+
+/* --- Service cards: keep meta top-right, but lift the title and reduce empty air --- */
+.serv-card{
+  position:relative!important;
+  min-height:278px!important;
+  height:100%!important;
+  padding:32px 34px 28px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+
+.serv-card .serv-ico{
+  position:absolute!important;
+  top:32px!important;
+  left:34px!important;
+  width:52px!important;
+  height:52px!important;
+  margin:0!important;
+}
+
+.serv-card .serv-tag{
+  position:absolute!important;
+  top:40px!important;
+  right:34px!important;
+  margin:0!important;
+  max-width:58%!important;
+  text-align:right!important;
+  white-space:nowrap!important;
+}
+
+.serv-card .serv-t{
+  margin-top:88px!important;
+  margin-bottom:14px!important;
+  padding:0!important;
+  line-height:1.18!important;
+}
+
+.serv-card .serv-d{
+  margin-bottom:16px!important;
+  line-height:1.50!important;
+}
+
+.serv-card ul,
+.serv-card .serv-list{
+  margin-top:auto!important;
+}
+
+/* --- Comparison cards: move inner text block slightly right/center, without objects --- */
+.diff-col{
+  padding:32px 40px!important;
+}
+
+.diff-col .diff-h,
+.diff-col .diff-list{
+  max-width:560px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+.diff-col .diff-h{
+  width:100%!important;
+}
+
+.diff-col .diff-list{
+  width:100%!important;
+}
+
+.diff-row{
+  max-width:100%!important;
+}
+
+/* Equal visual cards */
+.pain-grid,
+.serv-grid{
+  align-items:stretch!important;
+}
+
+.pain-grid > *,
+.serv-grid > *{
+  height:100%!important;
+}
+
+/* Mobile refinement */
+@media(max-width:720px){
+  .pain-card{
+    min-height:auto!important;
+    padding:28px 24px 26px!important;
+  }
+
+  .pain-card .pain-tag{
+    top:28px!important;
+    right:24px!important;
+    max-width:60%!important;
+    font-size:10px!important;
+  }
+
+  .pain-card .pain-num{
+    font-size:54px!important;
+    margin-bottom:14px!important;
+  }
+
+  .serv-card{
+    min-height:auto!important;
+    padding:28px 24px 26px!important;
+  }
+
+  .serv-card .serv-ico{
+    top:28px!important;
+    left:24px!important;
+    width:48px!important;
+    height:48px!important;
+  }
+
+  .serv-card .serv-tag{
+    top:36px!important;
+    right:24px!important;
+    max-width:58%!important;
+    font-size:10px!important;
+  }
+
+  .serv-card .serv-t{
+    margin-top:88px!important;
+  }
+
+  .diff-col{
+    padding:28px 24px!important;
+  }
+
+  .diff-col .diff-h,
+  .diff-col .diff-list{
+    max-width:none!important;
+    margin-left:0!important;
+    margin-right:0!important;
+  }
+}
+
+@media(max-width:390px){
+  .pain-card .pain-tag,
+  .serv-card .serv-tag{
+    font-size:9px!important;
+    max-width:62%!important;
+  }
+
+  .pain-card .pain-num{
+    font-size:50px!important;
+  }
+
+  .nav-contacts .nav-c.primary{
+    min-width:132px!important;
+    padding-left:14px!important;
+    padding-right:14px!important;
+  }
+}
+
+
+/* PATCH FINAL VISUAL SPACING FIX */
+
+/* 1. Important custom note under pricing: bigger, thin, readable */
+.custom-pricing-note{
+  font-family:var(--mono)!important;
+  font-size:15px!important;
+  font-weight:400!important;
+  color:var(--ink-soft)!important;
+  text-align:center!important;
+  margin-top:38px!important;
+  letter-spacing:.055em!important;
+  line-height:1.85!important;
+  max-width:1120px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.custom-pricing-note a{
+  color:var(--plum)!important;
+  text-decoration:underline!important;
+  text-underline-offset:4px!important;
+}
+
+/* 2. Remove broken desktop sticky CTA at bottom-left.
+   Keep sticky CTA only on mobile. */
+.sticky-cta{
+  display:none!important;
+}
+@media(max-width:720px){
+  .sticky-cta{
+    display:flex!important;
+    left:14px!important;
+    right:14px!important;
+    bottom:14px!important;
+    width:auto!important;
+    justify-content:center!important;
+    padding-left:24px!important;
+    padding-right:24px!important;
+  }
+}
+
+/* 3. Bottom CTA card: rounder, softer */
+.cta-box{
+  border-radius:82px!important;
+}
+@media(max-width:720px){
+  .cta-box{
+    border-radius:48px!important;
+  }
+}
+
+/* 4. More air between niche tabs and the two containers below */
+.n-tabs{
+  margin-bottom:58px!important;
+}
+
+/* 5. Niche chat mockups: more height so time label is visible */
+.n-vis{
+  min-height:430px!important;
+  height:430px!important;
+  padding-bottom:24px!important;
+}
+.cm-time{
+  margin-top:auto!important;
+  padding-top:12px!important;
+  padding-bottom:2px!important;
+}
+@media(max-width:720px){
+  .n-vis{
+    min-height:430px!important;
+    height:430px!important;
+  }
+}
+
+/* 6. Service cards: lift title/text closer to the icon+meta band */
+.serv-card{
+  min-height:260px!important;
+  padding-top:30px!important;
+  padding-bottom:26px!important;
+}
+.serv-card .serv-ico{
+  top:30px!important;
+}
+.serv-card .serv-tag{
+  top:38px!important;
+}
+.serv-card .serv-t{
+  margin-top:74px!important;
+  margin-bottom:12px!important;
+}
+.serv-card .serv-d{
+  margin-bottom:14px!important;
+}
+@media(max-width:720px){
+  .serv-card .serv-t{
+    margin-top:78px!important;
+  }
+}
+
+/* 7. Pain cards: lift number and text together, not detached */
+.pain-card{
+  min-height:260px!important;
+  padding-top:30px!important;
+  padding-bottom:26px!important;
+}
+.pain-card .pain-tag{
+  top:30px!important;
+}
+.pain-card .pain-num{
+  margin-top:0!important;
+  margin-bottom:12px!important;
+  font-size:60px!important;
+  line-height:.96!important;
+}
+.pain-card .pain-t{
+  margin-top:0!important;
+  margin-bottom:10px!important;
+}
+.pain-card .pain-d{
+  margin-bottom:14px!important;
+}
+@media(max-width:720px){
+  .pain-card .pain-num{
+    margin-top:0!important;
+    font-size:54px!important;
+  }
+}
+
+/* 8. Comparison cards: shift text block slightly right/center */
+.diff-col{
+  padding-left:46px!important;
+  padding-right:46px!important;
+}
+.diff-col .diff-h,
+.diff-col .diff-list{
+  max-width:560px!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+@media(max-width:720px){
+  .diff-col{
+    padding-left:28px!important;
+    padding-right:28px!important;
+  }
+  .diff-col .diff-h,
+  .diff-col .diff-list{
+    margin-left:0!important;
+    margin-right:0!important;
+    max-width:none!important;
+  }
+}
+
+
+/* PATCH NICHE CHAT ALIGNMENT
+   Equalizes left/right niche cards and keeps chat time close to last message. */
+
+.n-panel{
+  align-items:stretch!important;
+}
+
+/* Left and right niche cards: equal visual size */
+.n-text,
+.n-vis{
+  min-height:430px!important;
+  height:auto!important;
+  box-sizing:border-box!important;
+}
+
+/* Left card: keep content optically centered */
+.n-text{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+
+/* Right chat card: center the whole dialogue group vertically */
+.n-vis{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+  padding:28px 24px 24px!important;
+  gap:10px!important;
+}
+
+/* Time must belong to the last message, not to the bottom of the card */
+.cm-time{
+  margin-top:4px!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+  line-height:1.2!important;
+  align-self:stretch!important;
+  animation:cmIn .5s cubic-bezier(.16,1,.3,1) backwards!important;
+  animation-delay:2.95s!important;
+}
+
+/* Slightly tighter chat bubbles so all niche dialogues fit evenly */
+.cm-msg{
+  margin:0!important;
+}
+
+/* On mobile keep the same logic, but allow height to grow if messages need it */
+@media(max-width:720px){
+  .n-panel{
+    align-items:stretch!important;
+  }
+
+  .n-text,
+  .n-vis{
+    min-height:420px!important;
+    height:auto!important;
+  }
+
+  .n-vis{
+    padding:24px 18px 22px!important;
+    justify-content:center!important;
+  }
+
+  .cm-time{
+    margin-top:5px!important;
+  }
+}
+
+
+/* PATCH PAIN CARDS TEXT DROP
+   Keeps numbers/tags in place, moves the lower content block down for more air. */
+
+.pain-card .pain-t{
+  margin-top:18px!important;
+}
+
+.pain-card .pain-d{
+  margin-top:4px!important;
+}
+
+/* Give the card a bit more height so the bottom solution line doesn't feel squeezed */
+.pain-card{
+  min-height:282px!important;
+  padding-bottom:30px!important;
+}
+
+/* Slightly more breathing room before the solution line */
+.pain-card .pain-fix,
+.pain-card .pain-solve{
+  padding-top:14px!important;
+}
+
+/* Mobile: a softer version so cards don't become too tall */
+@media(max-width:720px){
+  .pain-card .pain-t{
+    margin-top:14px!important;
+  }
+
+  .pain-card{
+    min-height:auto!important;
+    padding-bottom:28px!important;
+  }
+
+  .pain-card .pain-fix,
+  .pain-card .pain-solve{
+    padding-top:12px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -724,10 +1423,10 @@ textarea.contact-field{
     <div class="nav-contacts">
       <a href="https://t.me/BotFarm_bfbot" target="_blank" class="nav-c">
         <svg><use href="#i-bot"/></svg>
-        <span data-lang="ru" class="on">Агент Фарми</span>
-        <span data-lang="en">Agent Farmy</span>
+        <span data-lang="ru" class="on nav-farmy-full">Агент Фарми</span><span data-lang="ru" class="nav-farmy-short">Фарми</span>
+        <span data-lang="en" class="nav-farmy-full">Agent Farmy</span><span data-lang="en" class="nav-farmy-short">Farmy</span>
       </a>
-      <a href="https://t.me/KathrynAIFS" target="_blank" class="nav-c primary">
+      <a href="#" class="contact-open nav-c primary">
         <svg><use href="#i-headset"/></svg>
         <span data-lang="ru" class="on">Менеджер</span>
         <span data-lang="en">Manager</span>
@@ -778,10 +1477,10 @@ textarea.contact-field{
     <div class="sec-quick rv">
       <span class="sq-lbl"><span data-lang="ru" class="on">Связаться</span><span data-lang="en">Contact</span></span>
       <a href="https://t.me/BotFarm_bfbot" target="_blank" class="sq-btn"><svg><use href="#i-bot"/></svg><span data-lang="ru" class="on">Агент Фарми</span><span data-lang="en">Agent Farmy</span></a>
-      <a href="https://t.me/KathrynAIFS" target="_blank" class="sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
+      <a href="#" class="contact-open sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
     </div>
     <p class="sec-eye rv"><span data-lang="ru" class="on">Что автоматизируем</span><span data-lang="en">What we automate</span></p>
-    <h2 class="sec-h rv"><span data-lang="ru" class="on">Шесть направлений, которые AI закрывает <em>лучше, чем штат</em></span><span data-lang="en">Six areas AI handles <em>better than a team</em></span></h2>
+    <h2 class="sec-h rv"><span data-lang="ru" class="on">Шесть направлений, которые AI закрывает <em>лучше, чем штат из 3–5 человек</em></span><span data-lang="en">Six areas AI handles <em>better than a 3–5 person team</em></span></h2>
     <p class="sec-p rv"><span data-lang="ru" class="on">Не "ботов на кнопках". Интеллектуальные системы: ведут диалог, обрабатывают данные, принимают решения и встраиваются в вашу инфраструктуру.</span><span data-lang="en">Not "button bots". Intelligent systems: real conversations, data processing, decisions, and integration into your infrastructure.</span></p>
 
     <div class="serv-grid">
@@ -866,7 +1565,7 @@ textarea.contact-field{
     <div class="sec-quick rv">
       <span class="sq-lbl"><span data-lang="ru" class="on">Связаться</span><span data-lang="en">Contact</span></span>
       <a href="https://t.me/BotFarm_bfbot" target="_blank" class="sq-btn"><svg><use href="#i-bot"/></svg><span data-lang="ru" class="on">Агент Фарми</span><span data-lang="en">Agent Farmy</span></a>
-      <a href="https://t.me/KathrynAIFS" target="_blank" class="sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
+      <a href="#" class="contact-open sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
     </div>
     <p class="sec-eye rv"><span data-lang="ru" class="on">Без AI-системы</span><span data-lang="en">Without an AI system</span></p>
     <h2 class="sec-h rv"><span data-lang="ru" class="on">Где утекает прибыль <em>прямо сейчас</em></span><span data-lang="en">Where revenue leaks <em>right now</em></span></h2>
@@ -992,7 +1691,7 @@ textarea.contact-field{
     <div class="sec-quick rv">
       <span class="sq-lbl"><span data-lang="ru" class="on">Связаться</span><span data-lang="en">Contact</span></span>
       <a href="https://t.me/BotFarm_bfbot" target="_blank" class="sq-btn"><svg><use href="#i-bot"/></svg><span data-lang="ru" class="on">Агент Фарми</span><span data-lang="en">Agent Farmy</span></a>
-      <a href="https://t.me/KathrynAIFS" target="_blank" class="sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
+      <a href="#" class="contact-open sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
     </div>
     <p class="sec-eye rv"><span data-lang="ru" class="on">Для вашей ниши</span><span data-lang="en">For your niche</span></p>
     <h2 class="sec-h rv"><span data-lang="ru" class="on">Решение под <em>каждый бизнес</em></span><span data-lang="en">Tailored to <em>every business</em></span></h2>
@@ -1157,7 +1856,7 @@ textarea.contact-field{
     <div class="sec-quick rv">
       <span class="sq-lbl"><span data-lang="ru" class="on">Связаться</span><span data-lang="en">Contact</span></span>
       <a href="https://t.me/BotFarm_bfbot" target="_blank" class="sq-btn"><svg><use href="#i-bot"/></svg><span data-lang="ru" class="on">Агент Фарми</span><span data-lang="en">Agent Farmy</span></a>
-      <a href="https://t.me/KathrynAIFS" target="_blank" class="sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
+      <a href="#" class="contact-open sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
     </div>
     <p class="sec-eye rv" style="text-align:center;"><span data-lang="ru" class="on">Прозрачные цены</span><span data-lang="en">Transparent pricing</span></p>
     <h2 class="sec-h rv" style="text-align:center;margin-bottom:14px;"><span data-lang="ru" class="on">Один платёж — <em>ваш на всю жизнь</em></span><span data-lang="en">One payment — <em>yours forever</em></span></h2>
@@ -1180,7 +1879,7 @@ textarea.contact-field{
           <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Уведомления специалисту</span><span data-lang="en">Specialist notifications</span></li>
           <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Базовая логика без AI</span><span data-lang="en">Smart logic, no AI</span></li>
         </ul>
-        <a href="https://t.me/KathrynAIFS" target="_blank" class="p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
+        <a href="#" class="contact-open p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
       </div>
 
       <!-- 2: AI assistant -->
@@ -1199,7 +1898,7 @@ textarea.contact-field{
           <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">База знаний под ваш бизнес</span><span data-lang="en">Custom knowledge base</span></li>
           <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Двухступенчатые напоминания</span><span data-lang="en">Two-step reminders</span></li>
         </ul>
-        <a href="https://t.me/KathrynAIFS" target="_blank" class="p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
+        <a href="#" class="contact-open p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
       </div>
 
       <!-- 3: Multi-channel + CRM (HOT) -->
@@ -1218,7 +1917,7 @@ textarea.contact-field{
           <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">CRM с единой воронкой</span><span data-lang="en">CRM with unified funnel</span></li>
           <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Аналитика и дашборд</span><span data-lang="en">Analytics + dashboard</span></li>
         </ul>
-        <a href="https://t.me/KathrynAIFS" target="_blank" class="p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
+        <a href="#" class="contact-open p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
       </div>
 
       <!-- 4: Custom system -->
@@ -1237,11 +1936,11 @@ textarea.contact-field{
           <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Реактивация спящих клиентов</span><span data-lang="en">Dormant client reactivation</span></li>
           <li class="pf"><svg><use href="#i-check"/></svg><span data-lang="ru" class="on">Индивидуальная разработка</span><span data-lang="en">Custom development</span></li>
         </ul>
-        <a href="https://t.me/KathrynAIFS" target="_blank" class="p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
+        <a href="#" class="contact-open p-btn"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Обсудить</span><span data-lang="en">Discuss</span></a>
       </div>
     </div>
 
-    <p style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);text-align:center;margin-top:30px;letter-spacing:.04em;line-height:1.6;" class="rv">
+    <p class="custom-pricing-note rv">
       <span data-lang="ru" class="on">Нужно нестандартное? Голосовые агенты, документооборот, аналитика спроса, интеграции с 1С — </span>
       <span data-lang="en">Need something custom? Voice agents, document automation, demand analytics, 1C integrations — </span>
       <a href="https://t.me/KathrynAIFS" target="_blank" style="color:var(--plum);text-decoration:underline;text-underline-offset:3px"><span data-lang="ru" class="on">обсудим в Telegram</span><span data-lang="en">let's discuss</span></a>
@@ -1255,7 +1954,7 @@ textarea.contact-field{
     <div class="sec-quick rv">
       <span class="sq-lbl"><span data-lang="ru" class="on">Связаться</span><span data-lang="en">Contact</span></span>
       <a href="https://t.me/BotFarm_bfbot" target="_blank" class="sq-btn"><svg><use href="#i-bot"/></svg><span data-lang="ru" class="on">Агент Фарми</span><span data-lang="en">Agent Farmy</span></a>
-      <a href="https://t.me/KathrynAIFS" target="_blank" class="sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
+      <a href="#" class="contact-open sq-btn primary"><svg><use href="#i-headset"/></svg><span data-lang="ru" class="on">Менеджер</span><span data-lang="en">Manager</span></a>
     </div>
     <p class="sec-eye rv"><span data-lang="ru" class="on">Частые вопросы</span><span data-lang="en">FAQ</span></p>
     <h2 class="sec-h rv" style="margin-bottom:40px;"><span data-lang="ru" class="on">Всё, что стоит знать <em>до старта</em></span><span data-lang="en">Everything worth knowing <em>before you start</em></span></h2>
@@ -1293,7 +1992,7 @@ textarea.contact-field{
   <div class="inner">
     <div class="cta-box lg rv">
       <p class="cta-eye"><span data-lang="ru" class="on">Готовы начать?</span><span data-lang="en">Ready to start?</span></p>
-      <h2 class="cta-h"><span data-lang="ru" class="on">Бесплатный аудит и расчёт <em>ROI для вашей ниши</em></span><span data-lang="en">Free audit and ROI calculation <em>for your niche</em></span></h2>
+      <h2 class="cta-h"><span data-lang="ru" class="on">Бесплатный аудит и расчёт <em>ROI&nbsp;&nbsp;для вашей ниши</em></span><span data-lang="en">Free audit and ROI calculation <em>for your niche</em></span></h2>
       <p class="cta-p"><span data-lang="ru" class="on">Расскажите о бизнесе. Разберу процессы, посчитаю окупаемость и пришлю план автоматизации. Без обязательств.</span><span data-lang="en">Tell me about your business. I'll analyse processes, calculate payback, and send you an automation plan. No commitment.</span></p>
       <div class="cta-btn-row">
         <a href="#" class="contact-open btn-pri" style="font-size:15px;padding:16px 36px;">
@@ -1672,5 +2371,18 @@ updateLocalizedPlaceholders(document.documentElement.lang || 'ru');
 <!-- PATCH FINAL FOOTER SHORT LEGAL LINKS -->
 <!-- PATCH LIGHT CTA RESTORED FROM index_working2 -->
 <!-- PATCH ROI SPACE + LIGHT CONTACT POPUP -->
+<!-- PATCH MANAGER BUTTONS OPEN POPUP -->
+<!-- PATCH GLOBAL TEXT CLIP FIX APPLIED -->
+<!-- PATCH HARD HEADING CLIP FIX APPLIED -->
+<!-- PATCH SAFE HEADING EM CLIP FIX APPLIED -->
+<!-- PATCH PRECISE HEADING FIX APPLIED -->
+<!-- PATCH MOBILE FARMY LABEL APPLIED -->
+<!-- PATCH CLEAN HERO BUTTONS MOBILE APPLIED -->
+<!-- PATCH CARDS NAV CLEANUP APPLIED -->
+<!-- PATCH CARDS LAYOUT REFINEMENT APPLIED -->
+<!-- PATCH FINAL CARDS NAV TEXT REFINEMENT APPLIED -->
+<!-- PATCH FINAL VISUAL SPACING FIX APPLIED -->
+<!-- PATCH NICHE CHAT ALIGNMENT APPLIED -->
+<!-- PATCH PAIN CARDS TEXT DROP APPLIED -->
 </body>
 </html>
