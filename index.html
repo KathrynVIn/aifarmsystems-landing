@@ -1381,75 +1381,85 @@ h1.hh .hh-line.hh-serif{
 
 
 
-/* PATCH FULL TEXT + CARD ANIMATION
-   Smooth reveal for headings, paragraphs, cards and card content. */
 
-.rv{
-  opacity:0;
-  transform:translate3d(0,28px,0) scale(.988);
-  filter:blur(8px);
-  transition:
-    opacity .72s cubic-bezier(.16,1,.3,1),
-    transform .72s cubic-bezier(.16,1,.3,1),
-    filter .72s cubic-bezier(.16,1,.3,1);
-  will-change:opacity,transform,filter;
+/* PATCH BF HARD ANIMATION RESET */
+
+/* neutralize broken old reveal system */
+.rv,
+.rv.in,
+.rv-child,
+.rv-child.in,
+.reveal-card,
+.reveal-card.in,
+.reveal-inner{
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
 }
 
-.rv.in{
-  opacity:1;
-  transform:translate3d(0,0,0) scale(1);
-  filter:blur(0);
-}
-
-/* Card itself moves as one premium surface */
-.reveal-card{
-  opacity:0;
-  transform:translate3d(0,34px,0) scale(.978);
-  filter:blur(10px);
+/* new independent animation system */
+.bf-reveal{
+  opacity:0!important;
+  transform:translate3d(0,34px,0) scale(.982)!important;
+  filter:blur(10px)!important;
   transition:
     opacity .78s cubic-bezier(.16,1,.3,1),
     transform .78s cubic-bezier(.16,1,.3,1),
-    filter .78s cubic-bezier(.16,1,.3,1),
-    box-shadow .35s cubic-bezier(.16,1,.3,1);
+    filter .78s cubic-bezier(.16,1,.3,1)!important;
   will-change:opacity,transform,filter;
 }
 
-.reveal-card.in{
-  opacity:1;
-  transform:translate3d(0,0,0) scale(1);
-  filter:blur(0);
+.bf-reveal.bf-in{
+  opacity:1!important;
+  transform:translate3d(0,0,0) scale(1)!important;
+  filter:blur(0)!important;
 }
 
-/* Text inside card follows shortly, not late */
-.reveal-card .reveal-inner{
-  opacity:0;
-  transform:translate3d(0,12px,0);
-  filter:blur(4px);
+.bf-reveal-card{
+  opacity:0!important;
+  transform:translate3d(0,38px,0) scale(.976)!important;
+  filter:blur(12px)!important;
   transition:
-    opacity .54s cubic-bezier(.16,1,.3,1),
-    transform .54s cubic-bezier(.16,1,.3,1),
-    filter .54s cubic-bezier(.16,1,.3,1);
-  transition-delay:.09s;
+    opacity .84s cubic-bezier(.16,1,.3,1),
+    transform .84s cubic-bezier(.16,1,.3,1),
+    filter .84s cubic-bezier(.16,1,.3,1)!important;
+  will-change:opacity,transform,filter;
 }
 
-.reveal-card.in .reveal-inner{
-  opacity:1;
-  transform:translate3d(0,0,0);
-  filter:blur(0);
+.bf-reveal-card.bf-in{
+  opacity:1!important;
+  transform:translate3d(0,0,0) scale(1)!important;
+  filter:blur(0)!important;
 }
 
-/* Hover only after reveal */
-.reveal-card.in:hover{
-  transform:translate3d(0,-4px,0) scale(1.004);
+.bf-reveal-card > *{
+  opacity:0!important;
+  transform:translate3d(0,12px,0)!important;
+  filter:blur(4px)!important;
+  transition:
+    opacity .58s cubic-bezier(.16,1,.3,1),
+    transform .58s cubic-bezier(.16,1,.3,1),
+    filter .58s cubic-bezier(.16,1,.3,1)!important;
+  transition-delay:.11s!important;
+}
+
+.bf-reveal-card.bf-in > *{
+  opacity:1!important;
+  transform:translate3d(0,0,0)!important;
+  filter:blur(0)!important;
+}
+
+.bf-reveal-card.bf-in:hover{
+  transform:translate3d(0,-4px,0) scale(1.004)!important;
 }
 
 @media(prefers-reduced-motion:reduce){
-  .rv,
-  .rv.in,
-  .reveal-card,
-  .reveal-card.in,
-  .reveal-card .reveal-inner,
-  .reveal-card.in .reveal-inner{
+  .bf-reveal,
+  .bf-reveal.bf-in,
+  .bf-reveal-card,
+  .bf-reveal-card.bf-in,
+  .bf-reveal-card > *,
+  .bf-reveal-card.bf-in > *{
     opacity:1!important;
     transform:none!important;
     filter:none!important;
@@ -2199,79 +2209,7 @@ function showN(id,btn){
   document.getElementById('np-'+id).classList.add('on');
 }
 
-/* REVEAL — full text and cards animation */
-const revealStandaloneSelectors=[
-  '.hero-copy',
-  '.hero-p',
-  '.hero-btns',
-  '.hero-trust',
-  '.sec-kicker',
-  '.sec-h',
-  '.sec-p',
-  '.custom-pricing-note',
-  '.cta-eye',
-  '.cta-h',
-  '.cta-p',
-  '.cta-btn-row'
-].join(',');
 
-const revealCardSelectors=[
-  '.serv-card',
-  '.pain-card',
-  '.proc-card',
-  '.p-card',
-  '.faq-card',
-  '.diff-col',
-  '.n-text',
-  '.n-vis',
-  '.cta-box'
-].join(',');
-
-function prepareReveal(){
-  document.querySelectorAll(revealStandaloneSelectors).forEach(el=>{
-    el.classList.add('rv');
-  });
-
-  document.querySelectorAll(revealCardSelectors).forEach(card=>{
-    card.classList.add('reveal-card');
-
-    [...card.children].forEach(child=>{
-      child.classList.add('reveal-inner');
-    });
-  });
-}
-
-prepareReveal();
-
-const revealTargets=[
-  ...document.querySelectorAll('.rv'),
-  ...document.querySelectorAll('.reveal-card')
-];
-
-const ro=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('in');
-    }else{
-      entry.target.classList.remove('in');
-    }
-  });
-},{
-  threshold:0.04,
-  rootMargin:'0px 0px 18% 0px'
-});
-
-revealTargets.forEach(el=>ro.observe(el));
-
-let navTick=false;
-window.addEventListener('scroll',()=>{
-  if(navTick)return;
-  navTick=true;
-  requestAnimationFrame(()=>{
-    document.getElementById('nav').classList.toggle('sc',scrollY>50);
-    navTick=false;
-  });
-},{passive:true});
 
 
 /* PATCH FINAL: ONLY 3D figure copied from index_2.html; landing content kept from index_working.html */
@@ -2424,6 +2362,82 @@ window.addEventListener('scroll',()=>{
 
 
 
+/* BF HARD ANIMATION RESET SCRIPT */
+(function(){
+  const cardSelectors = [
+    '.serv-card',
+    '.pain-card',
+    '.proc-card',
+    '.p-card',
+    '.faq-card',
+    '.diff-col',
+    '.n-text',
+    '.n-vis',
+    '.cta-box'
+  ].join(',');
+
+  const textSelectors = [
+    '.hero-copy',
+    '.hero-p',
+    '.hero-btns',
+    '.hero-trust',
+    '.sec-kicker',
+    '.sec-h',
+    '.sec-p',
+    '.custom-pricing-note',
+    '.cta-eye',
+    '.cta-h',
+    '.cta-p',
+    '.cta-btn-row'
+  ].join(',');
+
+  document.querySelectorAll(cardSelectors).forEach((el, i) => {
+    el.classList.remove('rv','rv-child','reveal-card','reveal-inner');
+    el.classList.add('bf-reveal-card');
+    el.style.transitionDelay = `${Math.min(i % 3, 2) * 70}ms`;
+  });
+
+  document.querySelectorAll(textSelectors).forEach((el, i) => {
+    if (el.closest('.bf-reveal-card')) return;
+    el.classList.remove('rv','rv-child','reveal-card','reveal-inner');
+    el.classList.add('bf-reveal');
+    el.style.transitionDelay = `${Math.min(i % 2, 1) * 60}ms`;
+  });
+
+  const targets = [
+    ...document.querySelectorAll('.bf-reveal'),
+    ...document.querySelectorAll('.bf-reveal-card')
+  ];
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('bf-in');
+      } else {
+        entry.target.classList.remove('bf-in');
+      }
+    });
+  }, {
+    threshold: 0.04,
+    rootMargin: '0px 0px 18% 0px'
+  });
+
+  setTimeout(() => {
+    targets.forEach(el => observer.observe(el));
+  }, 80);
+
+  let navTick=false;
+  window.addEventListener('scroll',()=>{
+    if(navTick)return;
+    navTick=true;
+    requestAnimationFrame(()=>{
+      const nav=document.getElementById('nav');
+      if(nav) nav.classList.toggle('sc',scrollY>50);
+      navTick=false;
+    });
+  },{passive:true});
+})();
+
 /* Contact popup. Paste n8n webhook URL into AI_FARM_POPUP_WEBHOOK_URL when ready. */
 const AI_FARM_POPUP_WEBHOOK_URL = "https://hook.us2.make.com/3y0nepusgne0drh4uc3a80anlgognjea";
 
@@ -2522,6 +2536,6 @@ updateLocalizedPlaceholders(document.documentElement.lang || 'ru');
 <!-- PATCH FINAL VISUAL SPACING FIX APPLIED -->
 <!-- PATCH NICHE CHAT ALIGNMENT APPLIED -->
 <!-- PATCH PAIN CARDS TEXT DROP APPLIED -->
-<!-- PATCH FULL TEXT CARD ANIMATION APPLIED -->
+<!-- PATCH BF HARD ANIMATION RESET APPLIED -->
 </body>
 </html>
