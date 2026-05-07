@@ -1382,84 +1382,127 @@ h1.hh .hh-line.hh-serif{
 
 
 
-/* PATCH BF HARD ANIMATION RESET */
 
-/* neutralize broken old reveal system */
+/* PATCH CLEAN SCROLL ANIMATION ENGINE
+   One animation system only. Sequenced by section, smooth, repeatable, no old rv conflicts. */
+
+/* Neutralize old reveal classes so they cannot fight the new engine */
 .rv,
 .rv.in,
 .rv-child,
 .rv-child.in,
 .reveal-card,
 .reveal-card.in,
-.reveal-inner{
+.reveal-inner,
+.bf-reveal,
+.bf-reveal.bf-in,
+.bf-reveal-card,
+.bf-reveal-card.bf-in{
   opacity:1!important;
   transform:none!important;
   filter:none!important;
+  transition:none!important;
 }
 
-/* new independent animation system */
-.bf-reveal{
-  opacity:0!important;
-  transform:translate3d(0,34px,0) scale(.982)!important;
-  filter:blur(10px)!important;
+/* Base */
+.aosx{
+  opacity:0;
+  transform:translate3d(0,var(--aos-y,26px),0) scale(var(--aos-scale,.992));
+  filter:blur(var(--aos-blur,8px));
   transition:
-    opacity .78s cubic-bezier(.16,1,.3,1),
-    transform .78s cubic-bezier(.16,1,.3,1),
-    filter .78s cubic-bezier(.16,1,.3,1)!important;
+    opacity var(--aos-dur,.78s) cubic-bezier(.16,1,.3,1),
+    transform var(--aos-dur,.78s) cubic-bezier(.16,1,.3,1),
+    filter var(--aos-dur,.78s) cubic-bezier(.16,1,.3,1);
+  transition-delay:var(--aos-delay,0ms);
   will-change:opacity,transform,filter;
 }
 
-.bf-reveal.bf-in{
-  opacity:1!important;
-  transform:translate3d(0,0,0) scale(1)!important;
-  filter:blur(0)!important;
+.aosx.is-visible{
+  opacity:1;
+  transform:translate3d(0,0,0) scale(1);
+  filter:blur(0);
 }
 
-.bf-reveal-card{
-  opacity:0!important;
-  transform:translate3d(0,38px,0) scale(.976)!important;
-  filter:blur(12px)!important;
+/* Headings: heavier, elegant reveal */
+.aosx-heading{
+  --aos-y:22px;
+  --aos-scale:.996;
+  --aos-blur:7px;
+  --aos-dur:.82s;
+}
+
+/* Paragraphs / small text */
+.aosx-text{
+  --aos-y:18px;
+  --aos-scale:1;
+  --aos-blur:6px;
+  --aos-dur:.72s;
+}
+
+/* Cards: deeper motion, premium surface reveal */
+.aosx-card{
+  --aos-y:34px;
+  --aos-scale:.976;
+  --aos-blur:12px;
+  --aos-dur:.86s;
+}
+
+/* Inner card content follows quickly, not late */
+.aosx-card > .aosx-inner{
+  opacity:0;
+  transform:translate3d(0,10px,0);
+  filter:blur(4px);
   transition:
-    opacity .84s cubic-bezier(.16,1,.3,1),
-    transform .84s cubic-bezier(.16,1,.3,1),
-    filter .84s cubic-bezier(.16,1,.3,1)!important;
-  will-change:opacity,transform,filter;
+    opacity .56s cubic-bezier(.16,1,.3,1),
+    transform .56s cubic-bezier(.16,1,.3,1),
+    filter .56s cubic-bezier(.16,1,.3,1);
+  transition-delay:calc(var(--aos-delay,0ms) + 90ms);
 }
 
-.bf-reveal-card.bf-in{
-  opacity:1!important;
-  transform:translate3d(0,0,0) scale(1)!important;
-  filter:blur(0)!important;
+.aosx-card.is-visible > .aosx-inner{
+  opacity:1;
+  transform:translate3d(0,0,0);
+  filter:blur(0);
 }
 
-.bf-reveal-card > *{
-  opacity:0!important;
-  transform:translate3d(0,12px,0)!important;
-  filter:blur(4px)!important;
-  transition:
-    opacity .58s cubic-bezier(.16,1,.3,1),
-    transform .58s cubic-bezier(.16,1,.3,1),
-    filter .58s cubic-bezier(.16,1,.3,1)!important;
-  transition-delay:.11s!important;
+/* Buttons / actions */
+.aosx-action{
+  --aos-y:16px;
+  --aos-scale:.99;
+  --aos-blur:5px;
+  --aos-dur:.68s;
 }
 
-.bf-reveal-card.bf-in > *{
-  opacity:1!important;
-  transform:translate3d(0,0,0)!important;
-  filter:blur(0)!important;
+/* Hover still works after reveal */
+.aosx-card.is-visible.serv-card:hover,
+.aosx-card.is-visible.pain-card:hover,
+.aosx-card.is-visible.p-card:hover,
+.aosx-card.is-visible.faq-card:hover,
+.aosx-card.is-visible.proc-card:hover,
+.aosx-card.is-visible.diff-col:hover{
+  transform:translate3d(0,-4px,0) scale(1.004);
 }
 
-.bf-reveal-card.bf-in:hover{
-  transform:translate3d(0,-4px,0) scale(1.004)!important;
+/* Mobile: lighter animation, less blur */
+@media(max-width:720px){
+  .aosx{
+    --aos-y:20px;
+    --aos-blur:6px;
+    --aos-dur:.68s;
+  }
+
+  .aosx-card{
+    --aos-y:24px;
+    --aos-blur:8px;
+    --aos-dur:.72s;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
-  .bf-reveal,
-  .bf-reveal.bf-in,
-  .bf-reveal-card,
-  .bf-reveal-card.bf-in,
-  .bf-reveal-card > *,
-  .bf-reveal-card.bf-in > *{
+  .aosx,
+  .aosx.is-visible,
+  .aosx-card > .aosx-inner,
+  .aosx-card.is-visible > .aosx-inner{
     opacity:1!important;
     transform:none!important;
     filter:none!important;
@@ -2362,7 +2405,9 @@ function showN(id,btn){
 
 
 
-/* BF HARD ANIMATION RESET SCRIPT */
+
+
+/* CLEAN SCROLL ANIMATION ENGINE SCRIPT */
 (function(){
   const cardSelectors = [
     '.serv-card',
@@ -2374,65 +2419,121 @@ function showN(id,btn){
     '.n-text',
     '.n-vis',
     '.cta-box'
-  ].join(',');
-
-  const textSelectors = [
-    '.hero-copy',
-    '.hero-p',
-    '.hero-btns',
-    '.hero-trust',
-    '.sec-kicker',
-    '.sec-h',
-    '.sec-p',
-    '.custom-pricing-note',
-    '.cta-eye',
-    '.cta-h',
-    '.cta-p',
-    '.cta-btn-row'
-  ].join(',');
-
-  document.querySelectorAll(cardSelectors).forEach((el, i) => {
-    el.classList.remove('rv','rv-child','reveal-card','reveal-inner');
-    el.classList.add('bf-reveal-card');
-    el.style.transitionDelay = `${Math.min(i % 3, 2) * 70}ms`;
-  });
-
-  document.querySelectorAll(textSelectors).forEach((el, i) => {
-    if (el.closest('.bf-reveal-card')) return;
-    el.classList.remove('rv','rv-child','reveal-card','reveal-inner');
-    el.classList.add('bf-reveal');
-    el.style.transitionDelay = `${Math.min(i % 2, 1) * 60}ms`;
-  });
-
-  const targets = [
-    ...document.querySelectorAll('.bf-reveal'),
-    ...document.querySelectorAll('.bf-reveal-card')
   ];
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('bf-in');
-      } else {
-        entry.target.classList.remove('bf-in');
+  const headingSelectors = [
+    '.hero-copy',
+    '.hh',
+    '.sec-kicker',
+    '.sec-h',
+    '.cta-eye',
+    '.cta-h',
+    '.n-pain'
+  ];
+
+  const textSelectors = [
+    '.hero-p',
+    '.sec-p',
+    '.cta-p',
+    '.custom-pricing-note'
+  ];
+
+  const actionSelectors = [
+    '.hero-btns',
+    '.hero-trust',
+    '.cta-btn-row'
+  ];
+
+  function mark(el, type){
+    if(!el || el.dataset.aosxReady === '1') return;
+    el.dataset.aosxReady = '1';
+    el.classList.add('aosx');
+
+    if(type === 'card') el.classList.add('aosx-card');
+    if(type === 'heading') el.classList.add('aosx-heading');
+    if(type === 'text') el.classList.add('aosx-text');
+    if(type === 'action') el.classList.add('aosx-action');
+  }
+
+  function prepare(){
+    cardSelectors.forEach(sel=>{
+      document.querySelectorAll(sel).forEach(card=>{
+        mark(card,'card');
+
+        Array.from(card.children).forEach(child=>{
+          child.classList.add('aosx-inner');
+        });
+      });
+    });
+
+    headingSelectors.forEach(sel=>{
+      document.querySelectorAll(sel).forEach(el=>{
+        if(el.closest('.aosx-card')) return;
+        mark(el,'heading');
+      });
+    });
+
+    textSelectors.forEach(sel=>{
+      document.querySelectorAll(sel).forEach(el=>{
+        if(el.closest('.aosx-card')) return;
+        mark(el,'text');
+      });
+    });
+
+    actionSelectors.forEach(sel=>{
+      document.querySelectorAll(sel).forEach(el=>{
+        if(el.closest('.aosx-card')) return;
+        mark(el,'action');
+      });
+    });
+
+    document.querySelectorAll('section').forEach(section=>{
+      const items = Array.from(section.querySelectorAll(':scope > .inner .aosx, :scope > .aosx'));
+      const unique = [...new Set(items)].filter(el=>!el.closest('.aosx-card .aosx'));
+
+      unique.forEach((el,i)=>{
+        const delay = Math.min(i,6) * 75;
+        el.style.setProperty('--aos-delay', delay + 'ms');
+      });
+    });
+
+    document.querySelectorAll('.serv-grid,.pain-grid,.price-grid,.faq-grid,.proc-grid,.diff-grid').forEach(grid=>{
+      Array.from(grid.children).forEach((el,i)=>{
+        if(el.classList.contains('aosx')){
+          el.style.setProperty('--aos-delay', Math.min(i,5) * 70 + 'ms');
+        }
+      });
+    });
+  }
+
+  prepare();
+
+  const targets = Array.from(document.querySelectorAll('.aosx'));
+
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+      }else{
+        entry.target.classList.remove('is-visible');
       }
     });
-  }, {
-    threshold: 0.04,
-    rootMargin: '0px 0px 18% 0px'
+  },{
+    threshold:0.08,
+    rootMargin:'0px 0px 12% 0px'
   });
 
-  setTimeout(() => {
-    targets.forEach(el => observer.observe(el));
-  }, 80);
+  requestAnimationFrame(()=>{
+    targets.forEach(el=>observer.observe(el));
+  });
 
   let navTick=false;
   window.addEventListener('scroll',()=>{
-    if(navTick)return;
+    if(navTick) return;
     navTick=true;
     requestAnimationFrame(()=>{
       const nav=document.getElementById('nav');
-      if(nav) nav.classList.toggle('sc',scrollY>50);
+      if(nav) nav.classList.toggle('sc',window.scrollY>50);
       navTick=false;
     });
   },{passive:true});
@@ -2536,6 +2637,6 @@ updateLocalizedPlaceholders(document.documentElement.lang || 'ru');
 <!-- PATCH FINAL VISUAL SPACING FIX APPLIED -->
 <!-- PATCH NICHE CHAT ALIGNMENT APPLIED -->
 <!-- PATCH PAIN CARDS TEXT DROP APPLIED -->
-<!-- PATCH BF HARD ANIMATION RESET APPLIED -->
+<!-- PATCH CLEAN SCROLL ANIMATION ENGINE APPLIED -->
 </body>
 </html>
