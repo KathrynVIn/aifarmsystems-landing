@@ -52,3 +52,11 @@ hero_debug_pack/
 rescue_versions/
 index.backup*.html
 .DS_Store
+
+# Local backup/debug files
+MAIN_FINAL_INDEX_MASTER.html
+hero_debug_pack.zip
+hero_debug_pack/
+rescue_versions/
+index.backup*.html
+.DS_Store
