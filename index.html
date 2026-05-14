@@ -1594,6 +1594,134 @@ h1.hh span.hh-serif{
 }
 </style>
 
+
+<style id="mobile-nav-final-fix">
+/* Remove detached bottom sticky CTA on all screens */
+.sticky-cta{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+/* Mobile top nav: Farmy and Manager must have the same visual geometry */
+@media(max-width:720px){
+  body{
+    padding-bottom:0!important;
+  }
+
+  nav{
+    align-items:center!important;
+  }
+
+  .nav-r{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:8px!important;
+  }
+
+  .nav-contacts{
+    display:flex!important;
+    align-items:center!important;
+    gap:6px!important;
+    margin-left:0!important;
+    min-width:0!important;
+  }
+
+  .nav-contacts .nav-c,
+  .nav-contacts .nav-c.primary{
+    height:36px!important;
+    min-height:36px!important;
+    min-width:0!important;
+    width:auto!important;
+    padding:0 11px!important;
+    box-sizing:border-box!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    font-size:12px!important;
+    line-height:1!important;
+    border-radius:999px!important;
+    white-space:nowrap!important;
+  }
+
+  .nav-contacts .nav-c svg,
+  .nav-contacts .nav-c.primary svg{
+    width:13px!important;
+    height:13px!important;
+    flex:0 0 13px!important;
+  }
+}
+
+@media(max-width:390px){
+  .nav-contacts{
+    gap:5px!important;
+  }
+
+  .nav-contacts .nav-c,
+  .nav-contacts .nav-c.primary{
+    height:34px!important;
+    min-height:34px!important;
+    padding:0 9px!important;
+    font-size:11.5px!important;
+  }
+
+  .nav-contacts .nav-c svg,
+  .nav-contacts .nav-c.primary svg{
+    width:12px!important;
+    height:12px!important;
+    flex-basis:12px!important;
+  }
+}
+</style>
+
+
+<style id="heading-em-global-safe-fix">
+/* Global fix: prevent italic / gradient heading accents from being clipped */
+.sec-h,
+.cta-h{
+  overflow:visible!important;
+}
+
+.sec-h em,
+.cta-h em{
+  display:inline-block!important;
+  overflow:visible!important;
+  line-height:1.18!important;
+  padding-right:.22em!important;
+  padding-bottom:.12em!important;
+  margin-right:-.08em!important;
+  vertical-align:baseline!important;
+  background-clip:text!important;
+  -webkit-background-clip:text!important;
+}
+
+/* Mobile: more right air for italic digits like 3–5 */
+@media(max-width:720px){
+  .sec-h,
+  .cta-h{
+    overflow:visible!important;
+    line-height:1.14!important;
+  }
+
+  .sec-h em,
+  .cta-h em{
+    line-height:1.20!important;
+    padding-right:.32em!important;
+    padding-bottom:.14em!important;
+    margin-right:-.10em!important;
+  }
+}
+
+@media(max-width:390px){
+  .sec-h em,
+  .cta-h em{
+    padding-right:.38em!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="atmos"><div class="ab ab1"></div><div class="ab ab2"></div><div class="ab ab3"></div><div class="ab ab4"></div><div class="ab ab5"></div></div>
@@ -1937,7 +2065,7 @@ h1.hh span.hh-serif{
         <div class="cm-msg cm-in" data-lang="ru" style="display:block;">А сколько стоит окрашивание омбре?</div>
         <div class="cm-msg cm-in" data-lang="en" style="display:none;">How much is ombre coloring?</div>
         <div class="cm-msg cm-out" data-lang="ru" style="display:block;">Ombre 8 500 ₽. Если первый визит — скидка 15%, итого 7 225 ₽ 🎁</div>
-        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Ombre is 8 500 ₽. First-time? 15% off — 7 225 ₽ 🎁</div>
+        <div class="cm-msg cm-out" data-lang="en" style="display:none;">Ombre is $280. First visit? 15% off — $238 🎁</div>
         <div class="cm-msg cm-in" data-lang="ru" style="display:block;">Завтра в 17:30, и можно к мастеру Анне</div>
         <div class="cm-msg cm-in" data-lang="en" style="display:none;">Tomorrow 5:30pm, with Anna please</div>
         <div class="cm-msg cm-out" data-lang="ru" style="display:block;">✓ Записала к Анне, 17:30. Напомню за 24ч и за 2ч. До встречи 💜</div>
@@ -2084,7 +2212,7 @@ h1.hh span.hh-serif{
         <div class="p-desc"><span data-lang="ru" class="on">Не просто кнопки — бот с логикой записи, специалистами и слотами</span><span data-lang="en">More than buttons — booking logic with specialists and slots</span></div>
         <div class="p-price-row">
           <span class="p-from"><span data-lang="ru" class="on">от</span><span data-lang="en">from</span></span>
-          <span class="p-price">15 000<span class="p-cur"> ₽</span></span>
+          <span class="p-price" data-ru="15 000" data-ru-cur="₽" data-en="590" data-en-cur="$">15 000<span class="p-cur"> ₽</span></span>
         </div>
         <div class="p-period"><span data-lang="ru" class="on">разово</span><span data-lang="en">one-time</span></div>
         <ul class="p-feats">
@@ -2103,7 +2231,7 @@ h1.hh span.hh-serif{
         <div class="p-desc"><span data-lang="ru" class="on">Понимает живой текст, отвечает по базе знаний, ведёт диалог</span><span data-lang="en">Understands natural text, answers from knowledge base, holds real dialogue</span></div>
         <div class="p-price-row">
           <span class="p-from"><span data-lang="ru" class="on">от</span><span data-lang="en">from</span></span>
-          <span class="p-price">45 000<span class="p-cur"> ₽</span></span>
+          <span class="p-price" data-ru="45 000" data-ru-cur="₽" data-en="1 200" data-en-cur="$">45 000<span class="p-cur"> ₽</span></span>
         </div>
         <div class="p-period"><span data-lang="ru" class="on">разово</span><span data-lang="en">one-time</span></div>
         <ul class="p-feats">
@@ -2116,13 +2244,13 @@ h1.hh span.hh-serif{
       </div>
 
       <!-- 3: Multi-channel + CRM (HOT) -->
-      <div class="p-card hot lg rv" data-b="ВЫБОР · POPULAR">
+      <div class="p-card hot lg rv" data-b="ВЫБОР · ПОПУЛЯРНО" data-b-ru="ВЫБОР · ПОПУЛЯРНО" data-b-en="POPULAR CHOICE">
         <div class="p-tier">BUSINESS</div>
         <div class="p-name"><span data-lang="ru" class="on">Мульти-канал + CRM</span><span data-lang="en">Multi-channel + CRM</span></div>
         <div class="p-desc"><span data-lang="ru" class="on">Все каналы в одной воронке: WA + TG + Instagram + сайт + CRM</span><span data-lang="en">All channels in one funnel: WA + TG + Instagram + web + CRM</span></div>
         <div class="p-price-row">
           <span class="p-from"><span data-lang="ru" class="on">от</span><span data-lang="en">from</span></span>
-          <span class="p-price">75 000<span class="p-cur"> ₽</span></span>
+          <span class="p-price" data-ru="75 000" data-ru-cur="₽" data-en="2 500" data-en-cur="$">75 000<span class="p-cur"> ₽</span></span>
         </div>
         <div class="p-period"><span data-lang="ru" class="on">разово</span><span data-lang="en">one-time</span></div>
         <ul class="p-feats">
@@ -2141,7 +2269,7 @@ h1.hh span.hh-serif{
         <div class="p-desc"><span data-lang="ru" class="on">Полный цикл: лидген → прогрев → сделка → удержание + кастом</span><span data-lang="en">Full cycle: leadgen → nurture → close → retention + custom integrations</span></div>
         <div class="p-price-row">
           <span class="p-from"><span data-lang="ru" class="on">от</span><span data-lang="en">from</span></span>
-          <span class="p-price">120 000<span class="p-cur"> ₽</span></span>
+          <span class="p-price" data-ru="120 000" data-ru-cur="₽" data-en="4 900" data-en-cur="$">120 000<span class="p-cur"> ₽</span></span>
         </div>
         <div class="p-period"><span data-lang="ru" class="on">разово</span><span data-lang="en">one-time</span></div>
         <ul class="p-feats">
@@ -2155,8 +2283,8 @@ h1.hh span.hh-serif{
     </div>
 
     <p class="custom-pricing-note rv">
-      <span data-lang="ru" class="on">Нужно нестандартное? Голосовые агенты, документооборот, аналитика спроса, интеграции с 1С — </span>
-      <span data-lang="en">Need something custom? Voice agents, document automation, demand analytics, 1C integrations — </span>
+      <span data-lang="ru" class="on">Нужно нестандартное? Голосовые агенты, документооборот, аналитика спроса, CRM, календарь, оплаты и мессенджеры — </span>
+      <span data-lang="en">Need something custom? Voice agents, document automation, demand analytics, CRM, calendar, payments and messaging integrations — </span>
       <a href="https://t.me/KathrynAIFS" target="_blank" style="color:var(--plum);text-decoration:underline;text-underline-offset:3px"><span data-lang="ru" class="on">обсудим в Telegram</span><span data-lang="en">let's discuss</span></a>
     </p>
   </div>
@@ -2253,8 +2381,9 @@ h1.hh span.hh-serif{
     <p class="contact-modal__text"><span data-lang="ru" class="on">Оставьте контакт и коротко опишите, что хотите автоматизировать. Ответ придёт туда, где вам удобно.</span><span data-lang="en">Leave your contact and briefly describe what you want to automate. I’ll reply where it’s convenient for you.</span></p>
 
     <form class="contact-form" id="contactForm">
+      <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" aria-hidden="true">
       <div class="contact-form__row">
-        <input class="contact-field" name="name" autocomplete="name" placeholder="Имя" data-placeholder-ru="Имя" data-placeholder-en="Name">
+        <input class="contact-field" name="name" autocomplete="name" required placeholder="Имя" data-placeholder-ru="Имя" data-placeholder-en="Name">
         <input class="contact-field" name="contact" required placeholder="Как с вами связаться" data-placeholder-ru="Как с вами связаться" data-placeholder-en="How to contact you">
       </div>
       <textarea class="contact-field" name="message" required placeholder="Что хотите автоматизировать?" data-placeholder-ru="Что хотите автоматизировать?" data-placeholder-en="What would you like to automate?"></textarea>
@@ -2272,12 +2401,6 @@ h1.hh span.hh-serif{
     </form>
   </div>
 </div>
-
-<a href="#" class="contact-open sticky-cta">
-  <svg width="16" height="16"><use href="#i-headset"/></svg>
-  <span data-lang="ru" class="on">Написать менеджеру</span>
-  <span data-lang="en">Message manager</span>
-</a>
 
 <script>
 function setLang(l, save = true){
@@ -2761,5 +2884,199 @@ updateLocalizedPlaceholders(document.documentElement.lang || 'ru');
 
 <!-- PATCH KAI ANIMATION FIX APPLIED -->
 <!-- PATCH KAI TRUE HERO FIX APPLIED -->
+
+<script id="contact-empty-guard">
+(function(){
+  const MIN_MESSAGE = 4;
+
+  function clean(v){
+    return String(v || '').trim();
+  }
+
+  document.addEventListener('submit', function(e){
+    const form = e.target;
+    if(!form || form.id !== 'contactForm') return;
+
+    const name = clean(form.elements.name && form.elements.name.value);
+    const contact = clean(form.elements.contact && form.elements.contact.value);
+    const message = clean(form.elements.message && form.elements.message.value);
+    const website = clean(form.elements.website && form.elements.website.value);
+    const status = document.getElementById('contactStatus');
+
+    // Honeypot: если бот заполнил скрытое поле — молча блокируем
+    if(website){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return false;
+    }
+
+    // Жёстко блокируем пустые заявки до основного обработчика
+    if(!name || !contact || !message || message.length < MIN_MESSAGE){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      if(status){
+        const isRu = document.querySelector('[data-lang="ru"].on');
+        status.textContent = isRu
+          ? 'Заполните имя, контакт и коротко опишите задачу.'
+          : 'Please fill in your name, contact and task description.';
+        status.style.color = '#E30B5C';
+      }
+
+      // Подсветка пустых полей
+      ['name','contact','message'].forEach(n=>{
+        const el = form.elements[n];
+        if(el && !clean(el.value)){
+          el.focus();
+        }
+      });
+
+      return false;
+    }
+  }, true);
+})();
+</script>
+
+
+<script id="contact-tech-payload">
+(function(){
+  window.__aiFarmFormOpenedAt = null;
+
+  function nowIso(){
+    try { return new Date().toISOString(); }
+    catch(e){ return ''; }
+  }
+
+  function getLang(){
+    try {
+      const ru = document.querySelector('[data-lang="ru"].on');
+      const en = document.querySelector('[data-lang="en"].on');
+      if(ru) return 'ru';
+      if(en) return 'en';
+      return document.documentElement.lang || navigator.language || '';
+    } catch(e){
+      return '';
+    }
+  }
+
+  function markFormOpened(){
+    window.__aiFarmFormOpenedAt = Date.now();
+  }
+
+  document.addEventListener('click', function(e){
+    if(e.target && e.target.closest && e.target.closest('.contact-open')){
+      markFormOpened();
+    }
+  }, true);
+
+  document.addEventListener('focusin', function(e){
+    if(e.target && e.target.closest && e.target.closest('#contactForm')){
+      if(!window.__aiFarmFormOpenedAt) markFormOpened();
+    }
+  }, true);
+
+  const originalFetch = window.fetch;
+
+  window.fetch = function(input, init){
+    try{
+      const url = typeof input === 'string' ? input : (input && input.url ? input.url : '');
+
+      if(url && url.includes('hook.us2.make.com')){
+        const startedAt = window.__aiFarmFormOpenedAt;
+        const sentAt = Date.now();
+
+        let body = {};
+        if(init && init.body){
+          try { body = JSON.parse(init.body); }
+          catch(e){ body = {}; }
+        }
+
+        const timeToSubmitSec = startedAt ? Math.round((sentAt - startedAt) / 100) / 10 : null;
+
+        const enriched = Object.assign({}, body, {
+          page_url: window.location.href,
+          page_path: window.location.pathname,
+          page_query: window.location.search,
+          referrer: document.referrer || '',
+          site_language: getLang(),
+          browser_language: navigator.language || '',
+          user_agent: navigator.userAgent || '',
+          platform: navigator.platform || '',
+          screen_size: (window.screen && window.screen.width && window.screen.height)
+            ? String(window.screen.width) + 'x' + String(window.screen.height)
+            : '',
+          viewport_size: String(window.innerWidth || '') + 'x' + String(window.innerHeight || ''),
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+          sent_at: nowIso(),
+          form_opened_at: startedAt ? new Date(startedAt).toISOString() : '',
+          time_to_submit_sec: timeToSubmitSec,
+          anti_spam_note: timeToSubmitSec !== null && timeToSubmitSec < 2
+            ? 'suspicious_fast_submit'
+            : 'normal_or_unknown'
+        });
+
+        init = Object.assign({}, init, {
+          body: JSON.stringify(enriched)
+        });
+      }
+    }catch(e){
+      // Не ломаем отправку формы, если техническое обогащение не сработало.
+    }
+
+    return originalFetch.call(this, input, init);
+  };
+})();
+</script>
+
+
+<script id="pricing-i18n-fix">
+(function(){
+  function currentLang(){
+    const htmlLang = document.documentElement.getAttribute('lang');
+    if(htmlLang === 'en') return 'en';
+
+    const enOn = document.querySelector('[data-lang="en"].on');
+    const ruOn = document.querySelector('[data-lang="ru"].on');
+
+    if(enOn && !ruOn) return 'en';
+    return 'ru';
+  }
+
+  function formatPrice(value, cur){
+    return String(value || '').replace(/ /g, '&nbsp;') + '<span class="p-cur"> ' + String(cur || '') + '</span>';
+  }
+
+  function applyPricingI18n(){
+    const lang = currentLang();
+
+    document.querySelectorAll('.p-price[data-ru][data-en]').forEach(function(price){
+      const value = lang === 'en' ? price.dataset.en : price.dataset.ru;
+      const cur = lang === 'en' ? price.dataset.enCur : price.dataset.ruCur;
+      price.innerHTML = formatPrice(value, cur);
+    });
+
+    document.querySelectorAll('.p-card.hot[data-b-ru][data-b-en]').forEach(function(card){
+      card.setAttribute('data-b', lang === 'en' ? card.dataset.bEn : card.dataset.bRu);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', applyPricingI18n);
+
+  document.addEventListener('click', function(e){
+    if(e.target && e.target.closest && e.target.closest('.lb')){
+      setTimeout(applyPricingI18n, 60);
+      setTimeout(applyPricingI18n, 180);
+    }
+  }, true);
+
+  const observer = new MutationObserver(applyPricingI18n);
+  document.querySelectorAll('[data-lang]').forEach(function(el){
+    observer.observe(el, {attributes:true, attributeFilter:['class', 'style']});
+  });
+
+  applyPricingI18n();
+})();
+</script>
+
 </body>
 </html>
