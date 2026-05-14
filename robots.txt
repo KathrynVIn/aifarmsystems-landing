@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Disallow: /.git
+Disallow: /.env
+Disallow: /node_modules
+Disallow: /vendor
+Disallow: /composer.json
+Disallow: /composer.lock
+Disallow: /package-lock.json
+
+Sitemap: https://aifarmsystems.cc/sitemap.xml
